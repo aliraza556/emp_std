@@ -1,0 +1,193 @@
+<div id="top" class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left modal-primary">Alert</h4>
+                <button style="background-color:  red;padding: 5px 10px;" type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+                    &times;>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{myMessage}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="staticModal.hide()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+
+    <div class="container-fluid">
+        <!-- success message -->
+        <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+            <i class="fa fa-check"></i>
+            <strong>Success</strong>
+            <br>
+            <span class="alertMessage">{{myMessage}}</span>
+        </div>
+        <!-- error message -->
+        <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+            <i class="fa fa-warning fa-fw"></i>
+            <strong>Error!</strong>
+            <br>
+            <span class="alertMessage">{{myMessage}}</span>
+        </div>
+        <header>
+            <h1 class="h3 display">
+                <i class="fa fa-dashboard fa-fw"></i>Dashboard &nbsp;&nbsp;&nbsp;
+                <i style="color:green" *ngIf="showLoading" class="fa fa-refresh fa-spin"></i>
+            </h1>
+        </header>
+        <div class="row ">
+
+            <div class="col-lg-11 col-md-11">
+                <date-range (today)="onTodayClicked($event)" (week)="onWeekClicked($event)" (month)="onMonthClicked($event)" (custom)="onCustomClicked($event)">
+                </date-range>
+
+            </div>
+            <!-- <div class="col-md-1" style="position:relative;right: 57%">
+
+                <button class="btn btn-success" (click)="refreshData()" style="margin-left: 2px;">
+                    <i *ngIf="!changeClass" class="fa fa-refresh "></i>
+                    <i *ngIf="changeClass" class="fa fa-refresh fa-spin"></i>
+                </button>
+
+            </div> -->
+
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card" style="max-height: 90%">
+                    <div class="card-header">
+                        <h4>
+                            <i class="fa fa-list"></i>&nbsp;Work hours detail
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th>Total Working Hours :</th>
+                                    <td>{{totalWorkingMints}}</td>
+                                    <td>
+                                        <a data-toggle="tooltip" title="This is total time employee has to work!">
+                                            <i class="fa fa-info-circle fa-1x"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Worked {{duration}} :</th>
+                                    <td>{{totalWorkedMints}}</td>
+                                    <td>
+                                        <a data-toggle="tooltip" title="This is total time employee has been on work.">
+                                            <i class="fa fa-info-circle fa-1x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total Manual Time:</th>
+                                    <td>{{totalManualTime}}</td>
+                                    <td>
+                                        <a data-toggle="tooltip" title="Manual Time added by Admin.">
+                                            <i class="fa fa-info-circle fa-1x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total Idle Time :</th>
+                                    <td>{{totalIdleTimecard}}</td>
+                                    <td>
+                                        <a data-toggle="tooltip" title="This is total time employee has been reamined Idle.">
+                                            <i class="fa fa-info-circle fa-1x"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Total Disputed Time :</th>
+                                    <td>{{disputedTime}}</td>
+                                    <td>
+                                        <a data-toggle="tooltip" title="This is total disputed time refers to time in which employee has disputedly worked
+                                                                on any unrelated task.">
+                                            <i class="fa fa-info-circle fa-1x"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Active Working Hours :</th>
+                                    <td>{{activeWorkhours}}</td>
+                                    <td>
+                                        <a data-toggle="tooltip" title="This is total active time durring employee has worked without remaining idle.">
+                                            <i class="fa fa-info-circle fa-1x"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Remaining Working Hours :</th>
+                                    <td>{{remainingWorkhours}}</td>
+                                    <td>
+                                        <a data-toggle="tooltip" title="This is total remaining time employee has to work.">
+                                            <i class="fa fa-info-circle fa-1x"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card" style="height: 90%">
+                    <div class="card-header">
+                        <h4>
+                            <i class="fa fa-pie-chart"></i>&nbsp;Work hours summary
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <active-hours [defaultValue]="ActiveHourChartData"></active-hours>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>
+                            <i class="fa fa-area-chart fa-fw"></i>&nbsp;Application stats
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <app-stats [defaultLabel]="labelDashboard" [defaultValue]="valueDashboard"></app-stats>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>
+                            <i class="fa fa-area-chart fa-fw"></i>&nbsp;Working hours stats
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <working-hours [wDate1]="wDate" [wDuration1]="wDuration"></working-hours>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>

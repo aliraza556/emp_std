@@ -1,0 +1,85 @@
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left modal-primary">Alert</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+                    <span aria-hidden="true">&nbsp;&nbsp;&times;&nbsp;&nbsp;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{myMessage}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="staticModal.hide()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="row">
+    <h3 class="page-header"><i class="fa fa-bell fa-fw"></i>Notifications</h3>
+</div>-->
+<section>
+    <div class="container-fluid">
+        <header>
+            <h1 class="h3 display">
+                <i class="fa fa-bell"></i>&nbsp;Notifications
+            </h1>
+        </header>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                     <!-- success message -->
+                <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+                    <i class="fa fa-check"></i>
+                    <strong>Success</strong>
+                    <br>
+                    <span class="alertMessage">{{myMessage}}</span>
+                </div>
+                <!-- error message -->
+                <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+                    <i class="fa fa-warning fa-fw"></i>
+                    <strong>Error!</strong>
+                    <br>
+                    <span class="alertMessage">{{myMessage}}</span>
+                </div>
+                    <div class="card-body">
+
+                        <div *ngIf="(errorList.length+popUpList.length)>0;else noNotification">
+                            <div class="list-group">
+                                <div *ngFor="let r of errorList  ;let i=index">
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <a href="#" class="close" data-dismiss="alert" (click)="popError(i)" aria-label="close">&times;</a>
+                                        <i class="fa fa-warning fa-fw"></i>
+                                        {{r}}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.list-group -->
+                            <div class="list-group">
+                                <div *ngFor="let r of popUpList  ;let i=index">
+                                    <div class="alert alert-success alert-dismissable">
+                                        <a href="#" class="close" data-dismiss="alert" (click)="popList(i)" aria-label="close">&times;</a>
+                                        <i class="fa fa-check fa-fw"></i>
+                                        {{r}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ng-template #noNotification >
+                            <p style="text-align: center"> No notification available</p>
+
+                        </ng-template>
+
+                        <!-- card body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

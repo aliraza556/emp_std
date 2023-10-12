@@ -1,0 +1,116 @@
+<!-- Delete Team Modal -->
+<div class="modal fade" id="deleteTeam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete organization</h5>
+        <button style="background-color:  red;padding: 5px 10px;" type="button" class="close" data-dismiss="modal"
+          aria-label="Close">
+          &times;
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+        Are you sure you want to delete this organization?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" (click)="deleteItNow()" data-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="contaner-fluid">
+  <section>
+
+    <!-- success message -->
+    <div *ngIf="successTrigger.length>0" class="alert alert-success alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+      <i class="fa fa-check"></i>
+      <strong>Success</strong>
+      <br>
+      <span class="alertMessage">{{successTrigger}}</span>
+    </div>
+    <!-- error message -->
+    <div *ngIf="errorTrigger.length>0" class="alert alert-danger alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+      <i class="fa fa-warning fa-fw"></i>
+      <strong>{{errorTitle}}</strong>
+      <br>
+      <span class="alertMessage">{{errorTrigger}}</span>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <header>
+          <h1 class="h3 display">
+            <i class="fa fa-sitemap" aria-hidden="true"></i>
+            Organizations
+          </h1>
+          <div class="row">
+            <div class="col-4">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" placeholder="search here.." aria-label="search here.."
+                  aria-describedby="basic-addon1" [(ngModel)]="item">
+              </div>
+            </div>
+            <div class="col-8">
+              <button routerLink="../add-organization" class="btn btn-primary  pull-right">
+                <i class="fa fa-plus"></i>
+                New organization</button>
+            </div>
+          </div>
+
+        </header>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive ">
+          <table class="table tableTeam">
+            <thead>
+              <tr>
+                <th>Organization Id</th>
+                <th>Organization name</th>
+                <th>Members</th>
+                <th>Teams</th>
+                <th>Created on</th>
+                <th>Updated on</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let org of allOrganizations| filter:item | paginate: { itemsPerPage: 5, currentPage: page };let i=index">
+                <th>{{org.id}}</th>
+                <td style="cursor: pointer; color: blue" [routerLink]="['/dashboard/details',org.id]">{{org.name}}</td>
+                <td>{{org.membersCount}}</td>
+                <td>{{org.teamsCount}}</td>
+
+                <td>{{org.createdOn |date:'shortDate'}}</td>
+                <td>{{org.updatedOn |date:'shortDate'}}</td>
+
+                <td>
+                  <button class=" btn btn-danger" data-toggle="modal" data-target="#deleteTeam" (click)="setDeleteId(org.id)">
+                    <i class="fa fa-trash-o"></i>
+                    Delete</button>
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="row justify-content-end">
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

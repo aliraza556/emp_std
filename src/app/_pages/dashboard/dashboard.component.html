@@ -1,0 +1,50 @@
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Alert..!</h4>
+        <button style="background-color:  red;padding: 5px 10px;" type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        {{myMessage}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+
+<!-- new dasboard starts -->
+<div class="page" id="page">
+    
+  <topBar></topBar>
+
+  <router-outlet></router-outlet>
+
+  <!-- Header Section-->
+  <!-- <section class="dashboard-header section-padding">
+    <div class="container-fluid">
+    </div>
+  </section> -->
+
+  <footer class="main-footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <p>EPMS &copy; 2017-2019</p>
+        </div>
+        <div class="col-sm-6 text-right">
+          <p>Design by
+            <a href="http://afz-sol.com" class="external">Afz-Sol.</a>
+          </p>
+          <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+<!-- new dashboard ends -->

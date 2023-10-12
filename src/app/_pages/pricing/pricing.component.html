@@ -1,0 +1,62 @@
+<!-- <div class="slidecontainer">
+	<span>1 </span>
+	<span class="pull-right"> 100 </span>
+
+
+	<input type="range" min="1" max="100" value="1" name=totalMembers class="slider" id="myRange" [(ngModel)]="totalMembers">
+
+
+</div>
+<div class="members">
+
+		<h1  *ngIf="totalMembers === 1">
+			<i class="fa fa-user"></i> {{totalMembers}} Member
+		</h1>
+		<h1 *ngIf="totalMembers > 1 ">
+			<i class="fa fa-users"></i> {{totalMembers}} Members
+		</h1>
+
+
+</div> -->
+
+<div class="price-table-wrapper">
+	<div class="pricing-table">
+		<h2 class="pricing-table__header">- BASIC -</h2>
+		<h3 class="pricing-table__price">${{totalMembers * 50}}</h3>
+		<a target="_blank" class="pricing-table__button" href="#">
+			Join Now!
+		</a>
+		<ul class="pricing-table__list">
+			<li>30 day free trial</li>
+			<li>50gb storage space</li>
+			<li>20% discount</li>
+			<li>24 hour support</li>
+		</ul>
+	</div>
+	<div class="pricing-table">
+		<h2 class="pricing-table__header">- BUSINESS -</h2>
+		<h3 class="pricing-table__price">${{totalMembers * 80}}</h3>
+		<a target="_blank" class="pricing-table__button" href="#">
+			Join Now!
+		</a>
+		<ul class="pricing-table__list">
+			<li>40 day free trial</li>
+			<li>100gb storage space</li>
+			<li>25% discount</li>
+			<li>24 hour support</li>
+		</ul>
+	</div>
+	<div class="pricing-table">
+		<h2 class="pricing-table__header">- PREMIUM -</h2>
+		<h3 class="pricing-table__price">${{totalMembers * 130}}</h3>
+		<a target="_blank" class="pricing-table__button" href="#">
+			Join Now!
+		</a>
+		<ul class="pricing-table__list">
+			<li>50 day free trial</li>
+			<li>200gb storage space</li>
+			<li>40% discount</li>
+			<li>24 hour support</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+<section>
+  <div class="row">
+    <div class=" col-6 ">
+      <header style="          position:  relative;          margin-top: -50px;      ">
+        <h3>
+          <i class="fa fa-users"></i>
+          Members
+        </h3>
+      </header>
+      <div class="input-group mb-3" style="          position:  relative;          top: -10px;      ">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <i class="fa fa-search"></i>
+          </span>
+        </div>
+        <input type="text" class="form-control" placeholder="search here.." aria-label="search here.." aria-describedby="basic-addon1"
+          [(ngModel)]="item">
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive" style="margin-top:5px">
+
+    <table class="table" *ngIf="allUsers.length>0;else noUser">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of allUsers |filter:item | paginate: { itemsPerPage: 5, currentPage: page } ;let i=index">
+          <td>{{user.id}}</td>
+          <td (mouseenter)="setSelectedUserName(user.name);" style="cursor: pointer; color: blue" routerLink="/admin/userDetails/{{user.id}}">{{user.name}}</td>
+
+          <td *ngIf="user.email">{{user.email}}</td>
+          <td *ngIf="user.effectiveRole">{{user.effectiveRole | slice:5}}</td>
+
+          <td *ngIf="user.status">{{user.status}}</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+  </div>
+  <div class="row justify-content-end">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+
+  <ng-template #noUser>
+    <!-- <i [ngClass]="{'fa fa-refresh fa-spin': spinerTrigger}"></i> -->
+
+    <p style="text-align: center;color :green">
+      <!-- No user available -->
+      <i [ngClass]="{'fa fa-refresh fa-spin': spinerTrigger}"></i>
+    </p>
+  </ng-template>
+</section>

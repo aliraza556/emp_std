@@ -1,0 +1,78 @@
+<!-- for tam page -->
+<div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/dashboard/admin-dashboard">
+          <i class="fa fa-user-o"></i> Admin Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active" *ngIf="currentTeamName !=''">
+        <a style="cursor: pointer;" routerLink="/dashboard/admin-dashboard/teams">Teams</a>
+      </li>
+      <li style="cursor: pointer;" class="breadcrumb-item active" *ngIf="currentTeamName !=''">
+        <a routerLink="/admin/teamDetails/{{teamId}}">
+          {{currentTeamName}}
+
+        </a>
+      </li>
+
+      <li class="breadcrumb-item active">
+        <a>{{selectedUser}}</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a>{{currentPage}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="container-fluid mt-4">
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+
+
+          <ul class="nav nav-tabs justify-content-end" id="myTab" role="tablist">
+            <li class="nav-item">
+              <!-- id="dashboard-tab"   data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="true" -->
+              <a routerLink="dashboard" class="nav-link" [ngClass]="{'active':getRouterActive('dashboard')}">
+                <i class="fa fa-dashboard"></i>
+                Dashboard</a>
+            </li>
+            <!-- id="timecard-tab" data-toggle="tab" href="#timecard"                role="tab" aria-controls="timecards" aria-selected="false" -->
+            <li class="nav-item">
+              <a routerLink="timecards" class="nav-link" [ngClass]="{'active':getRouterActive('timecards')}">
+                <i class="fa fa-tasks"></i>
+                Timecards</a>
+            </li>
+            <!-- id="settings-tab" data-toggle="tab"                href="#settings" role="tab" aria-controls="settings" aria-selected="false" -->
+            <li class="nav-item">
+              <a routerLink="productivity-settings" class="nav-link" [ngClass]="{'active':getRouterActive('productivity-settongs')}">
+                <i class="fa fa-wrench"></i>
+                Productivity settings</a>
+            </li>
+
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <router-outlet></router-outlet>
+            <!-- <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+              <app-multi-user-dashboard [userIdForDashboard]="userIdForDashboard" #dashoboard></app-multi-user-dashboard>
+
+            </div>
+            <div class="tab-pane fade" id="timecard" role="tabpanel" aria-labelledby="timecard-tab">
+              <app-multi-user-timecard [inputUser]="userIdForDashboard"></app-multi-user-timecard>
+
+            </div>
+            <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+              <settings [inputUser]="userIdForDashboard"></settings>
+            </div> -->
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

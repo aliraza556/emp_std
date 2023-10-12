@@ -1,0 +1,128 @@
+<div class="page login-page">
+  <div class="container">
+
+    <div class="form-outer text-center align-items-center">
+      <div class="form-inner">
+
+        <!-- success message -->
+        <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+          <i class="fa fa-check"></i>
+          <strong>Success</strong>
+          <br>
+          <span class="alertMessage">{{myMessage}}</span>
+        </div>
+        <!-- error message -->
+        <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+          <i class="fa fa-warning fa-fw"></i>
+          <strong>{{errorTitle}}!</strong>
+          <br>
+          <span class="alertMessage">{{myMessage}}</span>
+        </div>
+
+        <div class="logo text-uppercase">
+          <strong class="text-primary">EPMS</strong>
+          <br>
+        </div>
+        <h2>Signup for your company</h2>
+
+
+        <form [formGroup]="adminSignupform" (ngSubmit)="onSubmit(adminSignupform.value)">
+
+          <div class="form-group">
+            <label for="companyName" class="pull-left">Company name</label>
+            <input id="companyName" formControlName="companyName" type="text" name="companyName" placeholder="Enter company name" required
+              class="form-control">
+
+            <span *ngIf="!adminSignupform.controls['companyName'].valid && adminSignupform.controls['companyName'].touched && adminSignupform.controls['companyName'].value.length < 3 "
+              class="help-block sub-little-text" style="color:red">Company name must be at least  3 characters.</span>
+
+          </div>
+
+          <div class="form-group">
+            <label for="firstName" class="pull-left">Full name</label>
+            <input id="firstName" formControlName="firstName" type="text" name="firstName" placeholder="Enter your full name" required
+              class="form-control">
+            <span *ngIf="!adminSignupform.controls['firstName'].valid &&
+             adminSignupform.controls['firstName'].touched &&
+              adminSignupform.controls['firstName'].value.length < 3 " class="help-block sub-little-text" style="color:red">Full name must be at least 3 characters.</span>
+
+          </div>
+          <!-- <div class="form-group">
+              <label for="lastName" class="pull-left">Last name</label>  
+            <input id="lastName" formControlName="lastName" type="text" name="lastName" placeholder="Enter your last name" required class="form-control">
+                    <span *ngIf="!adminSignupform.controls['lastName'].valid && adminSignupform.controls['lastName'].touched && adminSignupform.controls['lastName'].value.length < 4 "
+              class="help-block sub-little-text" style="color:red">Minimum 4 characters required</span>
+
+          </div> -->
+          <div class="form-group">
+            <label for="email" class="pull-left">Email</label>
+            <input id="email" formControlName="email" type="email" name="email" required placeholder="Enter your email" class="form-control">
+            <span *ngIf="!adminSignupform.controls['email'].valid && adminSignupform.controls['email'].touched " class="help-block sub-little-text"
+              style="color:red">Enter a valid email address</span>
+
+          </div>
+          <div class="form-group">
+            <label for="newPassword" class="pull-left">Password</label>
+            <input id="newPassword" formControlName="newPassword" type="password" name="password" placeholder="Enter password" required
+              class="form-control">
+            <span *ngIf="!adminSignupform.controls['newPassword'].valid &&
+             adminSignupform.controls['newPassword'].touched  " class="help-block sub-little-text" style="color:red"> Password must be at least 6 charecters.</span>
+
+          </div>
+          <div class="form-group">
+            <label for="repeatPassword" class="pull-left">Confirm password</label>
+            <input id="repeatPassword" formControlName="repeatPassword" type="password" placeholder="Confirm password" name="repeatPassword"
+              required class="form-control">
+
+            <span *ngIf="adminSignupform.controls['repeatPassword'].value != adminSignupform.controls['newPassword'].value &&
+             (adminSignupform.controls['newPassword'].touched || adminSignupform.controls['repeatPassword'].touched)" class="help-block sub-little-text"
+              style="color:red">Confirm password don't match.</span>
+
+          </div>
+
+          <div class="form-group">
+            <label for="timezone" class="pull-left">Timezone</label>
+            <select id="timezone" formControlName="timezone" class="form-control" *ngIf="timezoneData!=''">
+              <option value="" disabled hidden>-- Select TimeZone--</option>
+              <!-- <option  value="{{timezoneData[464].timezoneId}}" selected="selected">{{timezoneData[464].gmtValue}}</option> -->
+              <option value="{{t.timezoneId}}" *ngFor=" let t of timezoneData">{{t.gmtValue}}</option>
+
+
+            </select>
+
+            <span *ngIf="!adminSignupform.controls['timezone'].valid &&
+           adminSignupform.controls['timezone'].touched && 
+           adminSignupform.controls['timezone'].value.length < 4 " class="help-block sub-little-text" style="color:red">Timezone is required</span>
+
+          </div>
+
+          <div class="terms-conditions d-flex justify-content-center" style="margin: 10px 0px">
+            <input formControlName="license" name="license" id="license" type="checkbox" class="form-control-custom">
+            <label for="license">Agree the terms and policy</label>
+            <!-- <span *ngIf="!adminSignupform.controls['license'].valid && adminSignupform.controls['license'].touched " class="help-block sub-little-text"
+            style="color:red">Enter a valid email address</span> -->
+          </div>
+
+
+          <!-- ="!adminSignupform.valid" -->
+          <button type="submit" class="btn btn-primary" [disabled]="!adminSignupform.valid">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            <i [ngClass]="{'fa circle-o-notch fa-spin': changeClass}"></i>
+            Register</button>
+          <br>
+
+        </form>
+        <small>Already have an account? </small>
+        <a routerLink="../login" class="signup">Login</a>
+      </div>
+    </div>
+    <div class="copyrights text-center">
+      <p>Design by
+        <a href="http://afz-sol.com" class="external">Afz-Sol.</a>
+      </p>
+      <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+    </div>
+  </div>
+</div>

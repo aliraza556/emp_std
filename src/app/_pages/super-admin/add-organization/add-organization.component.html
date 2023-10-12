@@ -1,0 +1,197 @@
+<div class="contaner-fluid">
+  <section>
+
+    <!-- success message -->
+    <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+      <i class="fa fa-check"></i>
+      <strong>Success</strong>
+      <br>
+      <span class="alertMessage">{{myMessage}}</span>
+    </div>
+    <!-- error message -->
+    <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+      <i class="fa fa-warning fa-fw"></i>
+      <strong>Error!</strong>
+      <br>
+      <span class="alertMessage">{{myMessage}}</span>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <header>
+          <h1 class="h3 display">
+            <i class="fa fa-plus fa-fw"></i>
+            Add Organization
+          </h1>
+
+        </header>
+      </div>
+      <div class="col-8">
+        <button routerLink="../organizations-list" class="btn btn-primary  pull-right">
+          <i class="fa fa-sitemap" aria-hidden="true"></i>
+          Organizations</button>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="form-outer">
+          <div class="form-inner">
+
+            <form [formGroup]="adminSignupform" (ngSubmit)="onSubmit(adminSignupform.value)">
+
+              <div class="row">
+                <div class="col-md-2">
+                  <label for="companyName" class="pull-left">Company name</label>
+
+                </div>
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <input id="companyName" formControlName="companyName" type="text" name="companyName" placeholder="Enter company name"
+                      required class="form-control">
+
+                    <span *ngIf="!adminSignupform.controls['companyName'].valid && adminSignupform.controls['companyName'].touched && adminSignupform.controls['companyName'].value.length < 3 "
+                      class="help-block sub-little-text" style="color:red">Company name must be at least 3 characters.</span>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-2">
+                  <label for="firstName" class="pull-left">Admin name</label>
+
+                </div>
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <input id="firstName" formControlName="firstName" type="text" name="firstName" placeholder="Enter admin name"
+                      required class="form-control">
+                    <span *ngIf="!adminSignupform.controls['firstName'].valid &&
+                               adminSignupform.controls['firstName'].touched &&
+                                adminSignupform.controls['firstName'].value.length < 3 "
+                      class="help-block sub-little-text" style="color:red">Admin name must be at least 3 characters.</span>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-md-2">
+                  <label for="email" class="pull-left">Email</label>
+
+                </div>
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <input id="email" formControlName="email" type="email" name="email" required placeholder="Enter email"
+                      class="form-control">
+                    <span *ngIf="!adminSignupform.controls['email'].valid && adminSignupform.controls['email'].touched "
+                      class="help-block sub-little-text" style="color:red">Enter a valid email address</span>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-2">
+                  <label for="newPassword" class="pull-left">Password</label>
+
+                </div>
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <input id="newPassword" formControlName="newPassword" type="password" name="password" placeholder="Enter password"
+                      required class="form-control">
+                    <span *ngIf="!adminSignupform.controls['newPassword'].valid &&
+                               adminSignupform.controls['newPassword'].touched  "
+                      class="help-block sub-little-text" style="color:red"> Password must be at least 6 charecters.</span>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-2">
+                  <label for="repeatPassword" class="pull-left">Confirm password</label>
+
+                </div>
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <input id="repeatPassword" formControlName="repeatPassword" type="password" placeholder="Confirm password"
+                      name="repeatPassword" required class="form-control">
+
+                    <span *ngIf="adminSignupform.controls['repeatPassword'].value != adminSignupform.controls['newPassword'].value &&
+                               (adminSignupform.controls['newPassword'].touched || adminSignupform.controls['repeatPassword'].touched)"
+                      class="help-block sub-little-text" style="color:red">Confirm password don't match.</span>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-2">
+                  <label for="timezone" class="pull-left">Timezone</label>
+
+                </div>
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <select id="timezone" formControlName="timezone" class="form-control" *ngIf="timezoneData!=''">
+                      <option value="" disabled hidden>-- Select TimeZone--</option>
+                      <!-- <option  value="{{timezoneData[464].timezoneId}}" selected="selected">{{timezoneData[464].gmtValue}}</option> -->
+                      <option value="{{t.timezoneId}}" *ngFor=" let t of timezoneData">{{t.gmtValue}}</option>
+
+
+                    </select>
+
+                    <span *ngIf="!adminSignupform.controls['timezone'].valid &&
+                             adminSignupform.controls['timezone'].touched && 
+                             adminSignupform.controls['timezone'].value.length < 4 "
+                      class="help-block sub-little-text" style="color:red">Timezone is required</span>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-md-2"></div>
+                <div class=" col-md-10">
+                  <div class="terms-conditions" style="margin: 10px 0px">
+                    <input formControlName="license" name="license" id="license" type="checkbox" class="form-control-custom">
+                    <label for="license">Agree the terms and policy</label>
+                    <!-- <span *ngIf="!adminSignupform.controls['license'].valid && adminSignupform.controls['license'].touched " class="help-block sub-little-text"
+                          style="color:red">Enter a valid email address</span> -->
+                  </div>
+
+
+                  <!-- ="!adminSignupform.valid" -->
+                  <button type="submit" class="btn btn-primary" [disabled]="!adminSignupform.valid">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <i [ngClass]="{'fa fa-circle-o-notch fa-spin': changeClass}"></i>
+                    
+                    Add</button>
+                  <br>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>

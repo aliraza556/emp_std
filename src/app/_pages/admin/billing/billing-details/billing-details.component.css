@@ -1,0 +1,33 @@
+.one {
+    text-align: center;
+    width: 100%;
+    height: 300px;
+    margin: 5px 10px;
+    border: 1px solid lightgray;
+    padding: 10% 20%;
+}
+
+#t {
+    color: #5CB85C;
+    font-size: 20px;
+}
+
+.two {
+    width: 100%;
+    height: 300px;
+    margin: 5px 10px;
+    border: 1px solid lightgray;
+    overflow-y: scroll;
+}
+
+.three {
+    width: 100%;
+    height: 645px;
+    margin: 5px -10px;
+    border: 1px solid lightgray;
+    overflow-y: scroll;
+}
+
+label {
+    margin: 5px 10px
+}

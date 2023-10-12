@@ -1,0 +1,125 @@
+<section>
+
+  <div class="container-fluid">
+    <!-- success message -->
+    <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+      <i class="fa fa-check"></i>
+      <strong>Success</strong>
+      <br>
+      <span class="alertMessage">{{myMessage}}</span>
+    </div>
+    <!-- error message -->
+    <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+      <i class="fa fa-warning fa-fw"></i>
+      <strong>Error!</strong>
+      <br>
+      <span class="alertMessage">{{myMessage}}</span>
+    </div>
+    <header>
+      <h1 class="h3 display">
+        <i class="fa fa-download fa-fw"></i>Downloads &nbsp;&nbsp;&nbsp;
+        <!-- <i style="color:green" *ngIf="showLoading" class="fa fa-refresh fa-spin"></i> -->
+      </h1>
+    </header>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h1>Download Empro Client</h1>
+                <h5>Improve your employees productivity and focus</h5>
+              </div>
+            </div>
+
+            <div class="row my-4">
+              <div class="col-12 text-center">
+                <h6>Latest version of empro is : {{trackerVersion}}</h6>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col text-center align-items-cente">
+
+                <div class="img-holder">
+                  <img src="assets/img/window.jpg" alt="" width="100">
+
+                </div>
+                <div class="caption">
+                  <a style="cursor:pointer ;color:white" href="http://{{ip}}/{{port}}/common/version/download?os=win">
+                    <i class="fa fa-download  my-2"></i>
+                    Windows <br> (7,8,10)
+                  </a>
+
+                </div>
+                <!-- <i class="fa fa-windows fa-5x"></i> <br> -->
+                <!-- href="http://{{ip}}/common/version/latest" -->
+
+              </div>
+              <!-- <div class="col text-center align-items-cente">
+                <i class="fa fa-linux fa-5x"></i>
+                <p class=" my-2">Coming soon...</p>
+
+
+              </div> -->
+              <div class="col text-center align-items-cente">
+
+                <div class="img-holder">
+                  <img src="assets/img/linux.png" alt="" width="100">
+
+                </div>
+                <div class="caption">
+                  <a style="cursor:pointer ;color:white;margin-top: 7% " >
+                    <!-- <i class="fa fa-download  my-2"></i> -->
+                    Coming soon...
+                    <br>
+
+
+
+                  </a>
+
+                </div>
+                <!-- <i class="fa fa-windows fa-5x"></i> <br> -->
+                <!-- href="http://{{ip}}/common/version/latest" -->
+
+              </div>
+              <!-- <div class="col text-center align-items-cente">
+                <i class="fa fa-apple fa-5x"></i>
+                <p class=" my-2">Coming soon...</p>
+
+              </div> -->
+
+              <div class="col text-center align-items-cente">
+
+                <div class="img-holder">
+                  <img src="assets/img/apple.png" alt="" width="100">
+
+                </div>
+                <div class="caption">
+                  <a style="cursor:pointer ;color:white ;margin-top: 7% " >
+                    <!-- <i class="fa fa-download  my-2"></i> -->
+                    Coming soon...
+
+
+
+                  </a>
+
+                </div>
+                <!-- <i class="fa fa-windows fa-5x"></i> <br> -->
+                <!-- href="http://{{ip}}/common/version/latest" -->
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

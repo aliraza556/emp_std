@@ -1,0 +1,90 @@
+<!-- Breadcrumb-->
+<!-- <div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="../admin-dashboard" routerLink="/admin-dashboard">
+          <i class="fa fa-user-o"></i> Admin Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <a>Pending user</a>
+      </li>
+    </ul>
+  </div>
+</div> -->
+
+
+<!-- calncle invitation Modal -->
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cancle Invite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you wnat to cancle invite?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" (click)="cancelInvite()" data-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section>
+  <div class="">
+    <div class="row mt-2">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <!-- peding user -->
+            <div class="table-responsive">
+              <header *ngIf="PendingUsers.length>0">
+                <h1 class="h3 display">
+                  <i class="fa fa-user "></i> Pending members
+                </h1>
+              </header>
+              <table class="table" *ngIf="PendingUsers.length>0;else noPendingUser">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Invitation date</th>
+                    <th>Invited by</th>
+                    <th>Status</th>
+                    <th></th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pu of PendingUsers;let i=index">
+                    <td>{{i+1}}</td>
+                    <td *ngIf="pu.email">{{pu.email}}</td>
+                    <td *ngIf="pu.createdOn"> {{pu.createdOn | date}}</td>
+                    <td *ngIf="pu.invitedBy.name">{{pu.invitedBy.name}}</td>
+                    <td *ngIf="pu.status">{{pu.status}}</td>
+                    <td>
+                      <button class="btn btn-danger" style="margin-top: -7px;   padding: 5px;" (click)=setCancelInviteId(pu.id)
+                        data-toggle="modal" data-target="#exampleModal">Cancel Invite</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <ng-template #noPendingUser>
+                <p style="text-align: center;color :red">No pending user available</p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

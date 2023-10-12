@@ -1,0 +1,119 @@
+<div id="top" class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left modal-primary">Alert</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+                    <span aria-hidden="true">&nbsp;&nbsp;&times;&nbsp;&nbsp;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{myMessage}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="staticModal.hide()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
+<div *ngIf="triggerk" class="alert alert-success alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <i class="fa fa-comment fa-fw"></i>
+    <strong>{{myMessage}}</strong>
+</div> -->
+<!-- Breadcrumb-->
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="../dashboard">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Edit profile </li>
+        </ul>
+    </div>
+</div>
+<section style="margin-top:2%">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+
+                    <!-- success message -->
+                    <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+                        <i class="fa fa-check"></i>
+                        <strong>Success</strong>
+                        <br>
+                        <span class="alertMessage">{{myMessage}}</span>
+                    </div>
+                    <!-- error message -->
+                    <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+                        <i class="fa fa-warning fa-fw"></i>
+                        <strong>Error!</strong>
+                        <br>
+                        <span class="alertMessage">{{myMessage}}</span>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                        <h4>
+                            <i class="fa fa-user"></i>&nbsp; Edit profile
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label">Email</label>
+                                <div class="col-sm-8">
+                                    <input id="userMail" style="padding-left:10px" disabled="true" [formControl]="userMail"
+                                        type="text" name="userMail" required class="form-control" [ngClass]="{'has-error': (!userMail.valid && userMail.touched), 'has-success': (userMail.valid && userMail.touched)}">
+
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label">Full name</label>
+                                <div class="col-sm-8">
+                                    <input id="fullName" style="padding-left:10px" required [formControl]="userName"
+                                        type="text" name="userName" required class="form-control" [ngClass]="{'has-error': (!userName.valid && userName.touched), 'has-success': (userName.valid && userName.touched)}">
+
+                                    <span *ngIf="!userName.valid && userName.touched " class="help-block sub-little-text"
+                                        style="color:red">Enter a valid name</span>
+
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label">Select timezone</label>
+                                <div class="col-sm-8 mb-3">
+                                    <select id="timezone" [formControl]="timezone" class="form-control" id="sel1">
+                                        <option value="{{t.timezoneId}}" *ngFor=" let t of timezoneData">{{t.gmtValue}}</option>
+                                    </select>
+                                    <span *ngIf="!timezone.valid && timezone.touched " class="help-block sub-little-text"
+                                        style="color:red">Enter a valid timezone</span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="line"></div>
+                            <div class="form-group row">
+                                <div class="col-sm-4 offset-sm-2">
+                                    <!-- <button type="submit" class="btn btn-secondary">Cancel</button> -->
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                        <i [ngClass]="{'fa fa-circle-o-notch fa-spin': changeClass}"></i>
+                                        Save changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

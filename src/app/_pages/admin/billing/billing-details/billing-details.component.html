@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-8">
+        <label for="one">Current month billing</label>
+        <div id="one" class="one">
+          <div class="row">
+            <div class="col-md-12" style="font-weight:700;   margin: 8% 5%; ">
+              <table id="t" *ngIf="totalBilling">
+                <tr>
+                  <td style="text-align:left">Amount</td>
+                  <td> &nbsp;&nbsp; :&nbsp;&nbsp; </td>
+                  <td style="text-align:left">{{roundNumber(totalBilling.totalAmount) }}</td>
+
+                </tr>
+                <tr>
+                  <td>Usage(hours)</td>
+                  <td> &nbsp;&nbsp; :&nbsp;&nbsp; </td>
+                  <td style="text-align:left">{{getHours(totalBilling.totalMinutesLogged)}}</td>
+
+                </tr>
+                <tr>
+
+                  <td>Billing period</td>
+                  <td> &nbsp;&nbsp; :&nbsp;&nbsp; </td>
+                  <td>{{totalBilling.startDate | date:'yyyy-MM-dd'}} To {{totalBilling.endDate | date:'yyyy-MM-dd'}}</td>
+                </tr>
+              </table>
+
+
+
+            </div>
+
+          </div>
+        </div>
+
+
+        <label for="two">Billing history</label>
+        <div id="two" class="two">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Usage <small>(Hours)</small> </th>
+                <th>Amount </th>
+                <th>Status</th>
+              </tr>
+            </thead>
+          </table>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="three" style="margin-left:-10px !important">Daily usage</label>
+
+          <div id="three" class="three">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Usage <small>(hours)</small></th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- {{dailyBilling}} -->
+                <tr *ngFor="let bill of dailyBilling | reverse ;">
+                  <td>{{bill.createdOn | date:'yyyy-MM-dd'}}</td>
+                  <td>{{getHours(bill.minutesLogged)}} </td>
+                  <td>{{roundNumber(bill.totalCost)}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

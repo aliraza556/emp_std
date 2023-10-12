@@ -1,0 +1,8 @@
+.caption {
+    color: white;
+    margin: 10px auto;
+    background: #5CB85C;
+    width: 250px;
+    font-weight: 600;
+    min-height: 57px
+}

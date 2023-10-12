@@ -1,0 +1,158 @@
+<!-- Modal -->
+<!-- <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{myMessage}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" (click)="staticModal2.hide()">No</button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="OndeleteUser();staticModal2.hide()">Yes</button>
+
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Breadcrumb-->
+<!-- <div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="../dashboard">Dashboard</a>
+            </li>
+
+            <li class="breadcrumb-item active">
+                <a routerLink="../all-users" (click)="showHideForms();">All User</a>
+            </li>
+            <li class="breadcrumb-item active" *ngIf='showForm'>Edit User</li>
+
+        </ul>
+    </div>
+</div> -->
+
+<section>
+    <div class="container-fluid">
+
+        <header>
+
+            <h1 class="h3 display" *ngIf='!showForm'>
+                <i class="fa fa-users fa-fw"></i>
+                All users
+            </h1>
+            <h1 class="h3 display" *ngIf='showForm'>
+                <i class="fa fa-pencil fa-fw"></i>
+                Edit user
+            </h1>
+        </header>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>All users</h4>
+                    </div>
+                    <!-- success message -->
+                <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+                    <i class="fa fa-check"></i>
+                    <strong>Success</strong>
+                    <br>
+                    <span class="alertMessage">{{myMessage}}</span>
+                </div>
+                <!-- error message -->
+                <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+                    <i class="fa fa-warning fa-fw"></i>
+                    <strong>Error!</strong>
+                    <br>
+                    <span class="alertMessage">{{myMessage}}</span>
+                </div>
+                    <div class="card-body" *ngIf="!showForm">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead style="background-color:lightgray">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let user of allUser">
+                                        <td *ngIf="user.id">{{user.id}}</td>
+                                        <td *ngIf="user.firstName">{{user.firstName}}</td>
+                                        <td *ngIf="user.lastName">{{user.lastName}}</td>
+                                        <td *ngIf="user.email">{{user.email}}</td>
+                                        <td *ngIf="!user.roles[0]" style="color:red;font-weight:bold;text-align:center">NA</td>
+                                        <td *ngIf="user.roles[0]">{{user.roles[0].code}}</td>
+                                        <td *ngIf="user.status">{{user.status}}</td>
+                                        <td *ngIf="user.id">
+                                            <button class="btn btn-primary" (click)="showForm=true;editForm(user)">Edit </button>
+                                        </td>
+                                        <td>
+                                            <button (click)="deleteTimecard(user)" class="btn btn-danger" data-toggle="modal" data-target="#deleteModel">Delete</button>
+                                            <!-- <button class="btn btn-danger" (click)="deleteTimecard(user)">Delete </button> -->
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card-body" *ngIf="showForm">
+                        <form class="form" action="">
+                            <div class="form-group">
+                                <label for="firstName">First name </label>
+                                <input type="text" disabled id="firstName" name="firstName" class="form-control" [(ngModel)]="userModel.firstName">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last name </label>
+                                <input class="form-control" disabled  id="lastName" type="text" name="lastName" [(ngModel)]="userModel.lastName">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email </label>
+                                <input class="form-control" disabled id="email" type="text" name="email" [(ngModel)]="userModel.email">
+                            </div>
+                            <div class="form-group" *ngIf="userModel.userRole != 'NA'">
+                                <label for="userRole">User role</label>
+                                <select class="form-control" id="userRole" [ngModelOptions]="{standalone: true}" [(ngModel)]="userModel.userRole">
+                                    <option *ngFor="let role of userRoles" [ngValue]=role.code>{{role.label}}</option>
+                                    <!-- <option value="ROLE_USER">User</option>
+                                                    <option value="ROLE_ADMIN">Admin</option>
+                                                    <option value="ROLE_MANAGER">Manager</option>
+                                                    <option value="ROLE_SUPER_ADMIN">Super Admin</option> -->
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select class="form-control" id="status" [ngModelOptions]="{standalone: true}" [(ngModel)]="userModel.status">
+                                    <option value="PENDING">Pending</option>
+                                    <option value="ACTIVE">Active</option>
+                                </select>
+                            </div>
+                            <button type="submit" (click)="showForm=false;onSubmit(userModel)" class="btn btn-default">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

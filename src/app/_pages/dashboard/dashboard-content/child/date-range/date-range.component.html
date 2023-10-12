@@ -1,0 +1,18 @@
+<div class="row">
+
+  <div class="col-12 ">
+    <label (click)="onTodayClick()" [(ngModel)]="radioModel" class="btn btn-success" btnRadio="Today" uncheckable>Today</label>
+    <label (click)="onWeekClick()" [(ngModel)]="radioModel" class="btn btn-success" btnRadio="Week" uncheckable>This week</label>
+    <label (click)="onMonthClick()" [(ngModel)]="radioModel" class="btn btn-success" btnRadio="Month" uncheckable>This month</label>
+    <label *ngIf="admin_role" (click)="key=true" [(ngModel)]="radioModel" class="btn btn-success " btnRadio="Custom" uncheckable>Custom date</label>
+    <br>
+    <span *ngIf="key">
+      <form [formGroup]="myForm" (ngSubmit)="onCustomClick(myForm.value)" novalidate>
+        <my-date-range-picker name="mydaterange" selected [options]="myDateRangePickerOptions" formControlName="myDateRange"></my-date-range-picker>
+        <button style="margin-top: -25px" type="submit" class="btn btn-success" (click)="onCustomClick(myForm.value)">Fetch</button>
+      </form>
+    </span>
+  </div>
+
+
+</div>

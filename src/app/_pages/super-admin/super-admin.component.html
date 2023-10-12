@@ -1,0 +1,37 @@
+<div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a>
+          <i class="fa fa-sitemap" aria-hidden="true"></i> {{organizationName}}</a>
+      </li>
+      <!-- <li class="breadcrumb-item active">
+        <a>{{str[2]}}</a>
+      </li> -->
+      <li class="breadcrumb-item active">
+        <a>{{str[3]}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="container-fluid">
+  <section>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <!-- <ul class="nav nav-tabs justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/dashboard/super-admin/members']">Members</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/dashboard/super-admin/teams']">Teams</a>
+              </li>
+            </ul> -->
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

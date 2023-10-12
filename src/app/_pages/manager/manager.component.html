@@ -1,0 +1,33 @@
+<section>
+    <div class="container-fluid">
+      <header>
+        <h1 class="h3 display">
+          <i class="fa fa-user-o"></i>
+          Manager dashboard
+        </h1>
+      </header>
+      <div class="card">
+         <!-- success message -->
+         <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+          <i class="fa fa-check"></i>
+          <strong>Success</strong>
+          <br>
+          <span class="alertMessage">{{myMessage}}</span>
+      </div>
+      <!-- error message -->
+      <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+          <i class="fa fa-warning fa-fw"></i>
+          <strong>Error!</strong>
+          <br>
+          <span class="alertMessage">{{myMessage}}</span>
+      </div>
+        <div class="card-body">
+            
+       
+        </div>
+      </div>
+  
+    </div>
+  </section>

@@ -1,0 +1,67 @@
+<div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="../admin-dashboard">
+          <i class="fa fa-user-o"></i> Admin Dashboard</a>
+      </li>
+      <!-- <li class="breadcrumb-item active">
+        <a>{{str[2]}}</a>
+      </li> -->
+      <li class="breadcrumb-item active">
+        <a>{{str[3]}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="container-fluid">
+  <section>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <ul class="nav nav-tabs justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/dashboard/admin-dashboard/members']"
+                  (click)='getAllPeningUsers()'>
+                  <i class="fa fa-users"></i>
+                  Members</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/dashboard/admin-dashboard/teams']">
+                  <i class="fa fa-users"></i>                  
+                  Teams</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/dashboard/admin-dashboard/organization-setting']">Setting</a>
+              </li> -->
+
+            </ul>
+
+            <div class="row mt-3" *ngIf="router.url=='/dashboard/admin-dashboard/members'">
+              <div class="col-md-12 justify-content-end">
+
+                <button [routerLinkActive]="['active']" [routerLink]="['/dashboard/admin-dashboard/inviteUser']" class="btn btn-success pull-right">
+                  <span>
+                    <i class="fa fa-user-plus"></i>
+                    Invite member</span>
+                </button>
+                <button [routerLinkActive]="['active']" [routerLink]="['/dashboard/admin-dashboard/pendingUsers']"
+                  class="btn btn-success pull-right" style="  margin-right: 5px;">
+                  <span>
+                    <i class="fa fa-users"></i>
+                    Pending members</span>
+                  <span *ngIf="PendingUsers">({{PendingUsers.length}})</span>
+                </button>
+
+              </div>
+            </div>
+
+
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,223 @@
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left modal-primary">Alert</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+                    <span aria-hidden="true">&nbsp;&nbsp;&times;&nbsp;&nbsp;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{myMessage}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="staticModal.hide()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <div *ngIf="triggerk" class="alert alert-success alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <i class="fa fa-comment fa-fw"></i>
+    <strong>{{myMessage}}</strong>
+</div> -->
+
+<!-- Breadcrumb-->
+<!-- <div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="../dashboard">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Settings </li>
+        </ul>
+    </div>
+</div> -->
+<section class="forms">
+    <div class="container-fluid">
+
+        <header>
+            <h1 class="h3 display">
+                <i class="fa fa-wrench"></i>&nbsp; Productivity settings
+
+            </h1>
+        </header>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div>
+                    <!-- success message -->
+                    <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+                        <i class="fa fa-check"></i>
+                        <strong>Success</strong>
+                        <br>
+                        <span class="alertMessage">{{myMessage}}</span>
+                    </div>
+                    <!-- error message -->
+                    <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+                        <i class="fa fa-warning fa-fw"></i>
+                        <strong>Error!</strong>
+                        <br>
+                        <span class="alertMessage">{{myMessage}}</span>
+                    </div>
+                    <!-- <div class="card-header d-flex align-items-center">
+                        <h4>Basic Form</h4>
+                    </div> -->
+                    <div>
+                        <!-- <p>Lorem ipsum dolor sit amet consectetur.</p> -->
+                        <form #f="ngForm" novalidate class="form-horizontal">
+
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label">Timecards interval
+                                    <small>(Minutes)</small>
+                                </label>
+                                <div class="col-md-3" style="padding-left:65px">
+                                    <select name="timecardInterval" class="form-control" [(ngModel)]="selectRadio.timecardInterval">
+                                        <option *ngFor="let item of timeIntervalList" [value]="item.value">
+                                            {{ item.display }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- <hr/> -->
+                            <!--activity count-->
+
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label">Activities</label>
+                                <div class="col-md-3" style="padding-left:65px">
+                                    <select name="activitiesFrequency" class="form-control" [(ngModel)]="selectRadio.activitiesFrequency">
+                                        <option *ngFor="let item of activitiesFrequencyList" [value]="item.value">
+                                            {{ item.display }}</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- <hr/> -->
+                            <!--web cam-->
+
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label">Webcam image</label>
+                                <div class="col-md-3" style="padding-left:65px">
+                                    <select name="webcamshotFrequency" class="form-control" [(ngModel)]="selectRadio.webcamshotFrequency">
+                                        <option *ngFor="let item of webcamShotFrequencyList" [value]="item.value">
+                                            {{ item.display }}</option>
+
+                                    </select>
+                                    <!-- <div *ngFor="let wcam of wCam">
+
+                                        <input type="radio" name="webcam" class="form-control" [(ngModel)]="selectRadio.webcam" [value]="wcam.value">
+                                        <label> {{wcam.display}}
+                                        </label>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <!-- <hr/> -->
+
+                            <!--web cam blur-->
+
+                            <!-- <div class="form-group row">
+                                <label class="col-md-3 form-control-label">Blur Webcam : </label>
+                                <div class="col-md-3" style="padding-left:65px">
+                                    <select name="activityCount" class="form-control" [(ngModel)]="selectRadio.activityCount">
+                                        <option *ngFor="let item of activityCount" [value]="item.value">
+                                            {{ item.display }}</option>
+
+                                    </select>
+                                  
+                                </div>
+                            </div>
+                        <hr/>
+                        -->
+
+
+
+                            <!--<div class="btn-group" id="status" data-toggle="buttons" *ngFor="let w of wCam">
+                                                            <label class="btn btn-default btn-on-1 btn-sm active">
+                                                            <input type="radio" [(ngModel)]="selectedRadio.w"  value={{w.value}} name="webcam" checked="checked">{{w.display}}</label>
+                                                           
+                                                        </div>-->
+                            <!--screen Short-->
+
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label">Screenshot</label>
+                                <div class="col-md-3" style="padding-left:65px">
+                                    <select name="screenshotFrequency" class="form-control" [(ngModel)]="selectRadio.screenshotFrequency">
+                                        <option *ngFor="let item of screenshotsFrequencyList" [value]="item.value">
+                                            {{ item.display }}</option>
+
+                                    </select>
+                                    <!-- <div *ngFor="let sshot of sShot" class="radio-inline">
+                                        <label>
+
+                                            <input type="radio" name="screenShot" [(ngModel)]="selectRadio.screenShot" [value]="sshot.value"> {{sshot.display}}
+                                        </label>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <!-- <hr/> -->
+                            <!--screenshot blur-->
+
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label">Screenshot blur level</label>
+                                <div class="col-md-3" style="padding-left:65px">
+
+                                    <select name="screenshotBlurLevel" class="form-control" [(ngModel)]="selectRadio.screenshotBlurLevel">
+                                        <option *ngFor="let item of screeshotBlurFrequncyList" [value]="item.value">
+                                            {{ item.display }}</option>
+                                    </select>
+
+                                    <!-- <div *ngFor="let bcam of bCams" class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="blurcam" [(ngModel)]="selectRadio.blurcam" [value]="bcam.value"> {{bcam.display}}
+                                        </label>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <!-- <hr/> -->
+
+                            <!-- <button (click)="getUserSettingData()" class=" btn btn-default pull-right">Cancel</button> -->
+                            <div class=" form-group row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-3" style="padding-left:65px">
+                                    <button (click)="onSubmit(f.value)" class=" btn btn-primary">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                        <i [ngClass]="{'fa fa-circle-o-notch fa-spin': changeClass}"></i>Update</button>
+
+                                </div>
+                            </div>
+
+
+
+                            <!--submit button-->
+
+
+
+
+
+                            <!-- <div class="col-offset-sm-9 col-md-12">
+                                                    <button [disabled]="!form.valid" type="submit" class="btn btn-primary  btn-auth pull-right">
+                                                        <i [ngClass]="{'fa fa-circle-o-notch fa-spin': changeClass}"></i>
+                                                        Update</button>
+                                                </div> -->
+
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

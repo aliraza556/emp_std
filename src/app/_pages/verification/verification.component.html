@@ -1,0 +1,26 @@
+<div class="page login-page">
+	<div class="container">
+		<div class="form-outer text-center align-items-center">
+			<div class="form-inner">
+				<div class="logo text-uppercase">
+					<strong class="text-primary">EPMS</strong>
+					<br>
+					<!-- <small>Email is verified</small> -->
+					<small>{{myMessage}}</small>
+				</div>
+
+				<!-- <h2> {{myMessage}}</h2> -->
+				<p *ngIf="showLoginLink">Click <a routerLink="../login" style="font-size:20px">here</a> to login</p>
+				<p *ngIf="!showLoginLink">Please contact to admin</p>
+
+
+			</div>
+
+		</div>
+		<div class="copyrights text-center">
+			<p>Design by
+				<a href="http://afz-sol.com" class="external">Afz-Sol.</a>
+			</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,476 @@
+<style>
+    .table td {
+        padding: 0px;
+
+    }
+</style>
+
+
+<!-- create Team Modal -->
+<div class="modal fade" id="createTeam" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create team</h5>
+                <button style="background-color:  red;padding: 5px 10px;" type="button" class="close" data-dismiss="modal"
+                    aria-label="Close" (click)="redirectToThisPage()">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <create-team></create-team>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Edit Team Modal -->
+<div class="modal fade" id="editTeam" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit team
+                    <i *ngIf="editTeamName.length == 0" [ngClass]="{'fa fa-circle-o-notch fa-spin': true}"></i>
+                </h5>
+                <button style="background-color:  red;padding: 5px 10px;" type="button" class="close" data-dismiss="modal"
+                    aria-label="Close" (click)="redirectToThisPage()">
+                    &times;
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="editTeamForm" (ngSubmit)="onSubmitEditForm(editTeamForm.value)" *ngIf="editTeamName.length>0">
+
+                    <div class="form-group">
+                        <label for="name">Team</label>
+                        <input formControlName="teamName" id="name" name="teamName" type="text" placeholder="Enter team name"
+                            class="form-control">
+                        <span *ngIf="!editTeamForm.controls['teamName'].valid && editTeamForm.controls['teamName'].touched  "
+                            class="help-block sub-little-text" style="color:red">Team name is required</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Description</label>
+                        <textarea formControlName="teamDescription" rows="4" cols="10" name="teamDescription" type="text"
+                            placeholder="Enter team description" class="form-control"></textarea>
+                        <span *ngIf="!editTeamForm.controls['teamDescription'].valid && editTeamForm.controls['teamDescription'].touched  "
+                            class="help-block sub-little-text" style="color:red">Description is required</span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label for="status">Status</label>
+                        </div>
+                        <div class="col-md-1">
+                            <input formControlName="status" name="status" id="status" type="checkbox" class="form-control"
+                                style="margin-top: 5px;margin-left: -40px" />
+                        </div>
+
+                    </div>
+
+
+                    <button [disabled]="!editTeamForm.valid" type="submit" class="btn btn-primary pull-right" style="margin-top:5px">Update
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Delete Team Modal -->
+<!-- <div class="modal fade" id="deleteTeam" tabindex="-1" role="dialog"  >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Team</h5>
+                <button style="background-color:  red;padding: 5px 10px;" type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="redirectToThisPage()">
+                    &times;
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+                Are you sure you want to delete this team.?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" (click)="deleteItNow();redirectToThisPage()" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- Invicte Member Modal -->
+<div class="modal fade" id="inviteMember" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Invite new member</h5>
+                <button style="background-color:  red;padding: 5px 10px;" type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <invite-member #teamreffrence></invite-member>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- for tam page -->
+<!-- <div class="breadcrumb-holder">
+    <div class="container-fluid">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="../admin-dashboard">
+                    <i class="fa fa-user-o"></i> Admin Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a style="cursor: pointer;" (click)="toggleShowTeam()" routerLink="/admin/team">Teams</a>
+            </li>
+
+        </ul>
+    </div>
+</div> -->
+<section>
+    <div class="">
+        <header>
+            <h1 class="h3 display">
+                <i class="fa fa-users fa-fw"></i>
+                Teams
+            </h1>
+            <div class="row" *ngIf="!userDashboard && !showTeam">
+                <div class="col-4">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="search here.." aria-label="search here.."
+                            aria-describedby="basic-addon1" [(ngModel)]="item">
+                    </div>
+                </div>
+                <div class="col-8">
+                    <button data-toggle="modal" data-target="#createTeam" class="btn btn-primary  pull-right">
+                        <i class="fa fa-plus"></i>
+                        New team</button>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- <div style="padding-bottom:5px">
+            <button class="btn btn-default" (click)="toggleShowTeam()" *ngIf="showTeam">
+                <i class=" fa fa-arrow-left"></i> Back</button>
+        </div> -->
+        <!-- <div class="row" *ngIf="showTeam">
+            <div class="col-md-12 col-lg-12">
+                <div class="pull-right">
+
+                </div>
+            </div>
+        </div> -->
+        <div class="row" *ngIf="!showTeam">
+            <div class="col-md-12 col-lg-12">
+
+                <div class="card">
+                    <!-- success message -->
+                    <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+                        <i class="fa fa-check"></i>
+                        <strong>Success</strong>
+                        <br>
+                        <span class="alertMessage">{{myMessage}}</span>
+                    </div>
+                    <!-- error message -->
+                    <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+                        <i class="fa fa-warning fa-fw"></i>
+                        <strong>Error!</strong>
+                        <br>
+                        <span class="alertMessage">{{myMessage}}</span>
+                    </div>
+                    <!-- <div class="card-header">
+                            <h4>Basic Table</h4>
+                        </div> -->
+                    <div class="card-body">
+                        <!-- <input type="text" name="search" [(ngModel)]="item"> -->
+
+                        <div class="table-responsive ">
+                            <table class="table tableTeam" *ngIf="teams.length>0;else noTeam">
+                                <thead>
+                                    <tr>
+                                        <th>Team Id</th>
+                                        <th>Team name
+                                            <i *ngIf="teams.length == 0" [ngClass]="{'fa fa-circle-o-notch fa-spin': true}"></i>
+                                        </th>
+                                        <th>Created</th>
+                                        <th>Updated</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let team of teams| filter:item | paginate: { itemsPerPage: 5, currentPage: page };let i=index">
+                                        <th>{{team.id}}</th>
+                                        <td (mouseenter)="setSelectedTeamName(team.name);" style="cursor: pointer; color: blue"
+                                            routerLink="/admin/teamDetails/{{team.id}}">{{team.name}}</td>
+
+                                        <!-- <td>
+                                            <span style="cursor: pointer; color: blue" (click)='setEditTeamId(team.id);getAllTeamTimeSheet(team.id);setUrl(team.id,team.name);getUrlValue();setDeleteTeamId(team.id)'>{{team.name}}</span>
+                                        </td> -->
+                                        <td>{{team.createdOn |date:'shortDate'}}</td>
+                                        <td>{{team.updatedOn |date:'shortDate'}}</td>
+                                        <td *ngIf="team.active" style="color:rgb(4, 214, 4)">
+                                            Active
+                                        </td>
+                                        <td *ngIf="!team.active" style="color:red">
+                                            Deactive
+                                        </td>
+
+                                        <!-- <td >
+                                            <i style="color:orange;cursor: pointer;" class="fa fa-edit fa-2x" data-toggle="modal" data-target="#editTeam" (click)="setEditTeamId(team.id)"></i>
+                                            <i style="color:red;cursor: pointer;" class="fa fa-trash fa-2x" data-toggle="modal" data-target="#deleteTeam" (click)="setDeleteTeamId(team.id)"></i>
+                                            <button class="btn btn-link btn-md btn-padding" data-toggle="modal" data-target="#inviteMember" (click)="redirectToThisPage();teamreffrence.getAllTeams()"
+                                                style="padding-top: 0px;">Invite memeber</button>
+
+                                        </td> -->
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row justify-content-end">
+                            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center !important">
+                    <ng-template #noTeam>
+                        <!-- <p style="color :green" >
+                            <i [ngClass]="{'fa fa-refresh fa-spin': true}"></i>
+                        </p> -->
+                        <span *ngIf="teams.length == 0">No team available</span>
+
+                        <p *ngIf="spinerTrigger" style="text-align: center;color :green">
+                            <i [ngClass]="{'fa fa-refresh fa-spin': true}"></i>
+                            <!--  -->
+                        </p>
+                    </ng-template>
+                </div>
+
+            </div>
+        </div>
+        <!-- teamdtails timesheet -->
+
+        <!-- <div class="row" *ngIf="showTeam && !userDashboard">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <nav>
+                            <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+                                    aria-selected="true">Summary</a>
+
+                                <a class="nav-item nav-link" id="nav-settings-tab" data-toggle="tab" href="#nav-settings" role="tab" aria-controls="nav-contact"
+                                    aria-selected="false">Settings</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div style="padding:10px 0px;" class="col-md-9 Button-group">
+                                    <button (click)="getSpecificTeamsheet('today')" class="btn btn-success ">Today</button>
+                                    <button (click)="getSpecificTeamsheet('week')" class="btn btn-success ">Week</button>
+                                    <button (click)="getSpecificTeamsheet('month')" class="btn btn-success ">Month</button>
+                                    <button class="btn btn-success " (click)="showCustomCalender()">Custom</button>
+
+                                    <div *ngIf="showCustom" style="margin: 10px -5px;">
+
+                                        <form [formGroup]="myForm" (ngSubmit)="onCustomClick(myDateRange)" novalidate style="margin: 0px 5px">
+                                            <my-date-range-picker name="mydaterange" selected [options]="myDateRangePickerOptions" formControlName="myDateRange"></my-date-range-picker>
+
+                                            <button type="submit" class="btn btn-success" (click)="onCustomClick(myDateRange)" style="
+                                            position:  relative;
+                                            top: -13px;
+                                        ">Fetch</button>
+                                        </form>
+
+                                    </div>
+                                    <i style="color :green" [ngClass]="{'fa fa-refresh fa-spin': spinerTrigger}"></i>
+
+                                </div>
+
+
+                                <div class="table-responsive">
+                                    <table class="table" id="tableTeam">
+                                        <thead>
+                                            <tr>
+                                                <th>User Id</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Total hours</th>
+                                                <th>Manual</th>
+                                                <th>Worked</th>
+                                                <th>Idle</th>
+                                                <th>Disputed</th>
+                                                <th>Remaining</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let time of timeSRecord;let i=index">
+                                                <td>{{time.user.id}}</td>
+                                                <td (click)="showUserDashboard();emitUserId(time.user.id);setSelectedUserName(time.user.name);">
+                                                    <span style="cursor: pointer; color: blue" data-toggle="tooltip" title="User Dashboard"> {{time.user.name}}</span>
+
+                                                </td>
+                                                <td>{{time.user.email}}</td>
+                                                <td>{{time.totalMinutes}} </td>
+                                                <td>{{time.totalManualTime}}</td>
+                                                <td>{{time.totalWorked}}</td>
+                                                <td>{{time.totalIdle}}</td>
+                                                <td>{{time.totalDisputed}}</td>
+                                                <td>{{time.totalRemainingTime}}</td>
+
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="nav-settings" role="tabpanel" aria-labelledby="nav-settings-tab">
+                                <header>
+                                    <h1 class="h3 display">
+
+                                        Settings
+                                    </h1>
+                                </header>
+                                <form [formGroup]="editTeamForm" (ngSubmit)="onSubmitEditForm(editTeamForm.value)">
+
+                                    <div class="form-group row ">
+                                        <div class="col-2">
+                                            <label for="name">Team</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input formControlName="teamName" name="teamName" type="text" placeholder="Enter team name" class="form-control">
+                                            <span *ngIf="!editTeamForm.controls['teamName'].valid && editTeamForm.controls['teamName'].touched  " class="help-block sub-little-text"
+                                                style="color:red">Team name is required</span>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-2">
+                                            <label for="name">Description</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <textarea formControlName="teamDescription" rows="4" cols="10" name="teamDescription" type="text" placeholder="Enter team description"
+                                                class="form-control"></textarea>
+                                            <span *ngIf="!editTeamForm.controls['teamDescription'].valid && editTeamForm.controls['teamDescription'].touched  " class="help-block sub-little-text"
+                                                style="color:red">Description is required</span>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label for="status">Status</label>
+                                        </div>
+                                        <div class="col-md-3">
+
+                                            <select name="status" id="status" formControlName="status" class="form-control">
+                                                <option [ngValue]="s.key" *ngFor="let s of statusList">{{s.value}}</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-10">
+
+                                            <button [disabled]="!editTeamForm.valid" type="submit" class="btn btn-primary float-right" style="margin-top:5px">Update </button>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                                <div class="row">
+                                    <div class="col-10">
+                                        <button class=" btn btn-danger float-right" data-toggle="modal" data-target="#deleteTeam" style="margin-top:5px;">Delete team</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- teamdtails timesheet ends here-->
+
+        <div class="card" *ngIf="userDashboard">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <ul class="nav nav-tabs justify-content-end" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab"
+                                    aria-controls="dashboard" aria-selected="true">
+                                    <i class="fa fa-dashboard"></i>
+                                    Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="timecard-tab" data-toggle="tab" href="#timecard" role="tab"
+                                    aria-controls="timecards" aria-selected="false">
+                                    <i class="fa fa-tasks"></i>
+                                    Timecards</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab"
+                                    aria-controls="settings" aria-selected="false">
+                                    <i class="fa fa-wrench"></i>
+                                    Productivity settings</a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                                <app-multi-user-dashboard [userIdForDashboard]="userIdForDashboard" #dashoboard></app-multi-user-dashboard>
+
+                            </div>
+                            <div class="tab-pane fade" id="timecard" role="tabpanel" aria-labelledby="timecard-tab">
+                                <app-multi-user-timecard [inputUser]="userIdForDashboard"></app-multi-user-timecard>
+
+                            </div>
+                            <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                                <settings [inputUser]="userIdForDashboard"></settings>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- /.row -->
+    </div>
+</section>

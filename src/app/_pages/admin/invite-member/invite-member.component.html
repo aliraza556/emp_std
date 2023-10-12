@@ -1,0 +1,134 @@
+<!-- Breadcrumb-->
+<!-- <div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+       <li class="breadcrumb-item"> 
+        <a routerLink="../dashboard">Dashboard</a>
+      </li> 
+      <li class="breadcrumb-item">
+        Invite member
+      </li>
+    </ul>
+  </div>
+</div> -->
+
+
+
+
+<!-- <header>
+
+      <h1 class="h3 display">
+        <i class="fa fa-user fa-fw"></i>
+        Invite member <i [ngClass]="{'fa circle-o-notch fa-spin': LoadingSpiner}"></i>
+      </h1>
+    </header> -->
+
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <!-- <div class="card"> -->
+    <div>
+
+      <!-- success message -->
+      <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+        <i class="fa fa-check"></i>
+        <strong>Success</strong>
+        <br>
+        <span class="alertMessage">{{myMessage}}</span>
+      </div>
+      <!-- error message -->
+      <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+        <i class="fa fa-warning fa-fw"></i>
+        <strong>Error!</strong>
+        <br>
+        <span class="alertMessage">{{myMessage}}</span>
+      </div>
+      <!-- <div class="card-body"> -->
+
+      <!-- <div style="text-align: center">
+        <i [ngClass]="{'fa fa-circle-o-notch  fa-spin': LoadingSpiner}"></i>
+      </div> -->
+
+      
+
+      <form [formGroup]="invitationForm" (ngSubmit)="onSubmit(invitationForm.value)" style=" margin: 7px;">
+
+        <div class="row">
+          <div class="col-md-2">
+            <label for="email">Email</label>
+
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+              <input id="email" formControlName="email" type="email" placeholder="Enter email here" class="form-control">
+              <span *ngIf="!invitationForm.controls['email'].valid && invitationForm.controls['email'].touched " class="help-block sub-little-text"
+                style="color:red">Enter a valid email address</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label for="teamId">Team</label>
+
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+              <select id="teamId" class="form-control" formControlName="teamId">
+                <!-- <option value="">--Select Team--</option> -->
+                <option *ngFor="let team of teams" value="{{team.id}}">{{team.name}}</option>
+
+              </select>
+              <span *ngIf="invitationForm.controls['teamId'].invalid && invitationForm.controls['teamId'].touched "
+                class="help-block sub-little-text" style="color:red">Team is required</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-2">
+            <label for="roleId">Role </label>
+
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+
+              <select id="roleId" class="form-control" formControlName="roleId">
+                <!-- <option value="">--Select user role--</option> -->
+                <option *ngFor="let role of roles" value="{{role.id}}">{{role.label}}</option>
+
+              </select>
+              <span *ngIf="!invitationForm.controls['roleId'].valid && invitationForm.controls['roleId'].touched "
+                class="help-block sub-little-text" style="color:red">Role is required</span>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-md-2">
+
+          </div>
+          <div class="col-md-10">
+            <button [disabled]="invitationForm.invalid" type="submit" class="btn btn-primary">
+                <i class="fa fa-user-plus"></i>
+
+              <i [ngClass]="{'fa fa-circle-o-notch fa-spin': LoadingSpiner}"></i>
+
+              <span >Send invite</span>
+            </button>
+          </div>
+        </div>
+
+
+
+
+
+
+      </form>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="row">
+  <div class=" col-md-12 col-lg-12">
+    <!-- <div class="card"> -->
+    <div>
+      <!-- success message -->
+      <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+        <i class="fa fa-check"></i>
+        <strong>Success</strong>
+        <br>
+        <span class="alertMessage">{{myMessage}}</span>
+      </div>
+      <!-- error message -->
+      <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+        <i class="fa fa-warning fa-fw"></i>
+        <strong>Error!</strong>
+        <br>
+        <span class="alertMessage">{{myMessage}}</span>
+      </div>
+      <p style="text-align: center;color :green">
+        <i [ngClass]="{'fa fa-refresh fa-spin': loading}"></i>
+      </p>
+      <!-- <div class="card-body"> -->
+
+      <form [formGroup]="teamForm" (ngSubmit)="onSubmit(teamForm.value)">
+
+        <div class="form-group">
+          <label for="name">Team name </label>
+          <input formControlName="teamName" id="name" name="teamName" type="text" placeholder="Enter team name" class="form-control">
+          <span *ngIf="teamForm.controls['teamName'].invalid && teamForm.controls['teamName'].touched && teamForm.controls['teamName'].value.length < 4 "
+            class="help-block sub-little-text" style="color:red">Team name is required </span>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Description</label>
+          <textarea formControlName="teamDescription" rows="4" cols="10" name="teamDescription" type="text" placeholder="Enter team description"
+            class="form-control"></textarea>
+          <span *ngIf="teamForm.controls['teamDescription'].invalid && teamForm.controls['teamDescription'].touched && teamForm.controls['teamDescription'].value.length < 10 "
+            class="help-block sub-little-text" style="color:red">Description is required</span>
+        </div>
+
+
+
+        <button [disabled]="teamForm.invalid" type="submit" class="btn btn-primary pull-right" style="margin-top:5px">
+          <i class="fa fa-plus"></i>
+          Create </button>
+      </form>
+
+    </div>
+
+
+  </div>
+
+
+
+
+  <!-- /.row -->
+</div>

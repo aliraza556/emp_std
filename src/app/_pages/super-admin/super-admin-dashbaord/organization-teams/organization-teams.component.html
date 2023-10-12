@@ -1,0 +1,91 @@
+<section>
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+
+      <div class="card">
+        <!-- success message -->
+        <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+          <i class="fa fa-check"></i>
+          <strong>Success</strong>
+          <br>
+          <span class="alertMessage">{{myMessage}}</span>
+        </div>
+        <!-- error message -->
+        <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+          <i class="fa fa-warning fa-fw"></i>
+          <strong>{{errorTitle}}</strong>
+          <br>
+          <span class="alertMessage">{{myMessage}}</span>
+        </div>
+        <!-- <div class="card-header">
+                        <h4>Basic Table</h4>
+                    </div> -->
+        <div class="card-body">
+          <!-- <input type="text" name="search" [(ngModel)]="item"> -->
+
+          <div class="table-responsive ">
+            <table class="table tableTeam" *ngIf="teamsList.length>0;else noTeam">
+              <thead>
+                <tr>
+                  <th>Team Id</th>
+                  <th>Team name
+                    <i *ngIf="teamsList.length == 0" [ngClass]="{'fa fa-circle-o-notch fa-spin': true}"></i>
+                  </th>
+                  <th>Created on</th>
+                  <th>Updated on</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let team of teamsList| filter:item | paginate: { itemsPerPage: 5, currentPage: page };let i=index">
+                  <th>{{i+1}}</th>
+                  <td (mouseenter)="setSelectedTeamName(team.name);" style="cursor: pointer; color: blue" routerLink="/admin/teamDetails/{{team.id}}">{{team.name}}</td>
+
+                  <!-- <td>
+                                        <span style="cursor: pointer; color: blue" (click)='setEditTeamId(team.id);getAllTeamTimeSheet(team.id);setUrl(team.id,team.name);getUrlValue();setDeleteTeamId(team.id)'>{{team.name}}</span>
+                                    </td> -->
+                  <td>{{team.createdOn |date:'shortDate'}}</td>
+                  <td>{{team.updatedOn |date:'shortDate'}}</td>
+                  <td *ngIf="team.active" style="color:rgb(4, 214, 4)">
+                    Active
+                  </td>
+                  <td *ngIf="!team.active" style="color:red">
+                    Deactive
+                  </td>
+
+                  <!-- <td >
+                                        <i style="color:orange;cursor: pointer;" class="fa fa-edit fa-2x" data-toggle="modal" data-target="#editTeam" (click)="setEditTeamId(team.id)"></i>
+                                        <i style="color:red;cursor: pointer;" class="fa fa-trash fa-2x" data-toggle="modal" data-target="#deleteTeam" (click)="setDeleteTeamId(team.id)"></i>
+                                        <button class="btn btn-link btn-md btn-padding" data-toggle="modal" data-target="#inviteMember" (click)="redirectToThisPage();teamreffrence.getAllTeams()"
+                                            style="padding-top: 0px;">Invite memeber</button>
+                                   
+                                    </td> -->
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="row justify-content-end">
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center !important">
+        <ng-template #noTeam>
+          <!-- <p style="color :green" >
+                        <i [ngClass]="{'fa fa-refresh fa-spin': true}"></i>
+                    </p> -->
+          <p *ngIf="spinerTrigger" style="text-align: center;color :green">
+            <i [ngClass]="{'fa fa-refresh fa-spin': true}"></i>
+            <!-- <span *ngIf="teamsList.length == 0 && !spinerTrigger">No team available</span> -->
+            <!--  -->
+          </p>
+        </ng-template>
+      </div>
+
+    </div>
+  </div>
+</section>

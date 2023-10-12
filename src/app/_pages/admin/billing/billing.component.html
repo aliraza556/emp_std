@@ -1,0 +1,56 @@
+<div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a>
+            <i class="fa fa-sitemap" aria-hidden="true"></i> {{organizationName}}</a>
+      </li>
+
+      <li class="breadcrumb-item active">
+        <a>{{str[3]}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="container-fluid ">
+
+
+  <section>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <ul class="nav nav-tabs justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link" (click)="getRouter()" [ngClass]="{'active':router.url=='/dashboard/billing/billing-details'}"
+                  [routerLinkActive]="['active']" [routerLink]="['/dashboard/billing/billing-details']">Billing details</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="getRouter()" [routerLinkActive]="['active']" [routerLink]="['/dashboard/billing/audit-log']">Adit
+                  log</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="getRouter()" [routerLinkActive]="['active']" [routerLink]="['/dashboard/billing/settings']">Settings</a>
+              </li>
+            </ul>
+            <!-- <ul class="nav nav-tabs >
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard/billing/detail']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Billing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"  [routerLink]="['/dashboard/billing/audit']">Audit log
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/dashboard/billing/setting']" routerLink="setting">Settings</a>
+              </li>
+
+            </ul> -->
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

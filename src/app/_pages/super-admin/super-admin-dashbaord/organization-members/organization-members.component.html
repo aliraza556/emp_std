@@ -1,0 +1,79 @@
+<section>
+
+  <!-- success message -->
+  <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+    <i class="fa fa-check"></i>
+    <strong>Success</strong>
+    <br>
+    <span class="alertMessage">{{myMessage}}</span>
+  </div>
+  <!-- error message -->
+  <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+    <i class="fa fa-warning fa-fw"></i>
+    <strong>Error!</strong>
+    <br>
+    <span class="alertMessage">{{myMessage}}</span>
+  </div>
+  <div class="row">
+    <div class=" col-6 ">
+      <header>
+        <h3>
+          <i class="fa fa-users"></i>
+          Members
+        </h3>
+      </header>
+      <div class="input-group mb-3" style="          position:  relative;          top: -10px;      ">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <i class="fa fa-search"></i>
+          </span>
+        </div>
+        <input type="text" class="form-control" placeholder="search here.." aria-label="search here.." aria-describedby="basic-addon1"
+          [(ngModel)]="item">
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive" style="margin-top:5px">
+
+    <table class="table" *ngIf="memebersList.length>0;else noUser">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of memebersList |filter:item | paginate: { itemsPerPage: 5, currentPage: page } ;let i=index">
+          <td>{{user.id}}</td>
+          <td (mouseenter)="setSelectedUserName(user.name);" style="cursor: pointer; color: blue" routerLink="/admin/userDetails/{{user.id}}">{{user.name}}</td>
+
+          <td *ngIf="user.email">{{user.email}}</td>
+          <td *ngIf="user.effectiveRole">{{user.effectiveRole | slice:5}}</td>
+
+          <td *ngIf="user.status">{{user.status}}</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+  </div>
+  <div class="row justify-content-end">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+
+  <ng-template #noUser>
+    <!-- <i [ngClass]="{'fa fa-refresh fa-spin': spinerTrigger}"></i> -->
+
+    <p style="text-align: center;color :green">
+      No user available
+      <i [ngClass]="{'fa fa-refresh fa-spin': loading}"></i>
+    </p>
+  </ng-template>
+</section>

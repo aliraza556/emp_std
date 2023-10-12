@@ -1,0 +1,34 @@
+<div bsModal #SuccesModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name" [config]="{backdrop: false}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content  successAlert">
+
+      <div class="modal-body">
+        <i class="fa fa-check-circle"></i> {{myMessage}}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #ErrorModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name" [config]="{backdrop: false}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content errorAlert ">
+
+      <div class="modal-body ">
+        <i class="fa fa-warning"></i>&nbsp; {{myMessage}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #WarningModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name"
+  [config]="{backdrop: false}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content  warningAlert">
+      
+      <div class="modal-body">
+        <i class="fa fa-warning"></i> {{myMessage}}
+      </div>
+    </div>
+  </div>
+</div>

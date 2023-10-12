@@ -1,0 +1,99 @@
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+ aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title pull-left modal-primary">Alert</h4>
+				<button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+					<span aria-hidden="true">&nbsp;&nbsp;&times;&nbsp;&nbsp;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				{{myMessage}}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" (click)="staticModal.hide()">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Breadcrumb-->
+<!-- <div class="breadcrumb-holder">
+	<div class="container-fluid">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a routerLink="../dashboard">Dashboard</a>
+			</li>
+			<li class="breadcrumb-item active">Organization Profile </li>
+		</ul>
+	</div>
+</div> -->
+<section>
+	<div class="container-fluid">
+		<header>
+			<h1 class="h3 display">
+				<i class="fa fa-users fa-fw"></i>
+				Organization settings
+			</h1>
+		</header>
+		<div class="row">
+
+			<div class="col-lg-12">
+				<div class="card">
+					<!-- <div class="card-header">
+						<h4>Organization Name</h4>
+					</div> -->
+					<!-- success message -->
+					<div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+						<i class="fa fa-check"></i>
+						<strong>Success</strong>
+						<br>
+						<span class="alertMessage">{{myMessage}}</span>
+					</div>
+					<!-- error message -->
+					<div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+						<i class="fa fa-warning fa-fw"></i>
+						<strong>Error!</strong>
+						<br>
+						<span class="alertMessage">{{myMessage}}</span>
+					</div>
+					<div class="card-body">
+						<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+
+							<div class="row">
+								<div class="col-md-2">
+									<label for="displayName" id="displayName"> Organization Name</label>
+								</div>
+								<div class="col-md-10">
+									<div class="form-group">
+										<input required [formControl]="displayName" type="text" name="displayName" required class="form-control">
+										<label for="displayName" class="label-material"></label>
+										<span *ngIf="!displayName.valid && displayName.touched " class="help-block sub-little-text" style="color:red">Enter
+											a valid Address</span>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="row">
+								<div class="col-md-2"></div>
+								<div class="col-md-10">
+									<button type="submit" [disabled]="!form.valid" class="btn btn-success" style="margin-right: 15px;"> Update</button>
+
+								</div>
+
+
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</section>

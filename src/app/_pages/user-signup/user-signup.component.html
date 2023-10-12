@@ -1,0 +1,125 @@
+<div class="page login-page">
+  <div class="container">
+
+    <div class="form-outer text-center align-items-center">
+      <div class="form-inner">
+
+        <!-- success message -->
+        <div *ngIf="successTrigger" class="alert alert-success alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+          <i class="fa fa-check fa-fw"></i>
+          <strong>Success</strong>
+          <br>
+          <strong class="alertMessage">{{myMessage}}
+            <!-- <strong *ngIf="loginLink">Click
+              <a routerLink="/login">Here</a> to Login</strong>-->
+          </strong>
+
+
+        </div>
+        <!-- error message -->
+        <div *ngIf="errorTrigger" class="alert alert-danger alert-dismissable">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="setAlertOff()">&times;</a>
+          <i class="fa fa-warning fa-fw"></i>
+          <strong>Error</strong>
+          <br>
+          <strong class="alertMessage">{{myMessage}}</strong>
+        </div>
+
+        <div class="logo text-uppercase">
+          <strong class="text-primary">EPMS</strong>
+          <br>
+        </div>
+        <h2>User Signup</h2>
+
+        <form [formGroup]="userSignupform" (ngSubmit)="onSubmit(userSignupform.value)">
+
+          <div class="form-group">
+            <label for="firstName" class="pull-left">Name</label>
+
+            <input formControlName="firstName" id="firstName" type="text" name="firstName" placeholder="Enter your full name" required
+              class="form-control">
+            <span *ngIf="!userSignupform.controls['firstName'].valid &&
+               userSignupform.controls['firstName'].touched &&
+                userSignupform.controls['firstName'].value.length < 4 "
+              class="help-block sub-little-text" style="color:red">Minimum 4 characters required</span>
+
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="pull-left">Email</label>
+
+            <input disabled formControlName="email" id="email" type="email" name="email" required placeholder="Enter email" class="form-control">
+
+            <span *ngIf="!userSignupform.controls['email'].valid && userSignupform.controls['email'].touched " class="help-block sub-little-text"
+              style="color:red">Enter a valid email address</span>
+
+          </div>
+
+
+          <div class="form-group">
+            <label for="newPasword" class="pull-left">Password</label>
+
+
+            <input formControlName="newPassword" id="newPasword" type="password" name="password" placeholder="Enter password" required
+              class="form-control">
+            <!-- <label for="newPassword" class="label-material">password</label> -->
+            <span *ngIf="!userSignupform.controls['newPassword'].valid &&
+               userSignupform.controls['newPassword'].touched  "
+              class="help-block sub-little-text" style="color:red">
+              Minimum length is 4 characters.</span>
+
+          </div>
+          <div class="form-group">
+            <label for="newPasword" class="pull-left">Confirm password</label>
+            <input formControlName="repeatPassword" type="password" placeholder="Confirm Password" name="repeatPassword"
+              required class="form-control">
+            <!-- <label for="repeatPassword" class="label-material">confirm password</label> -->
+            <span *ngIf="userSignupform.controls['repeatPassword'].value != userSignupform.controls['newPassword'].value &&
+               (userSignupform.controls['newPassword'].touched || userSignupform.controls['repeatPassword'].touched)"
+              class="help-block sub-little-text" style="color:red">Passwords don't match.</span>
+
+          </div>
+
+          <div class="form-group">
+            <label for="timezone" class="pull-left">Timezone</label>
+
+            <select formControlName="timezone" id="timezone" class="form-control" *ngIf="timezoneData!=''">
+              <option value="" disabled hidden>-- Select TimeZone--</option>
+              <!-- <option  value="{{timezoneData[464].timezoneId}}" selected="selected">{{timezoneData[464].gmtValue}}</option> -->
+              <option value="{{t.timezoneId}}" *ngFor=" let t of timezoneData">{{t.gmtValue}}</option>
+
+
+            </select>
+
+            <span *ngIf="!userSignupform.controls['timezone'].valid &&
+                 userSignupform.controls['timezone'].touched &&
+                 userSignupform.controls['timezone'].value.length < 4 "
+              class="help-block sub-little-text" style="color:red">Timezone is required</span>
+
+          </div>
+
+          <div class="terms-conditions d-flex justify-content-center">
+            <input id="license" formControlName="license" name="license" type="checkbox" class="form-control-custom">
+            <label for="license">Agree the terms and policy</label>
+          </div>
+          <!-- ="!userSignupform.valid" -->
+          <button [disabled]="!userSignupform.valid" type="submit" class="btn btn-primary">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            <i [ngClass]="{'fa fa-circle-o-notch fa-spin': changeClass}"></i>
+            Register</button>
+          <br>
+
+        </form>
+        <small>Already have an account? </small>
+        <a routerLink="../login" class="signup">Login</a>
+      </div>
+    </div>
+    <div class="copyrights text-center">
+      <p>Design by
+        <a href="http://afz-sol.com" class="external">Afz-Sol.</a>
+      </p>
+      <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+    </div>
+  </div>
+</div>

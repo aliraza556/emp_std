@@ -1,0 +1,52 @@
+<div class="body">
+        <div class="container text-center">
+                <div class="brand">
+                    <span class="glyphicon glyphicon-king" aria-hidden="true"></span>
+                    <h3 class="text-uppercase" style="font-size: 40px">EPMS</h3>
+                </div>
+                <h1 class="head" style="margin-top: 10%">
+                    <span>404</span>
+                </h1>
+                <p>Oops! The Page you requested was not found!</p>
+                <a *ngIf="!sendToDashboard"  class="btn-outline" (click)="goToLogin()"> Back to login</a>
+                <a *ngIf="sendToDashboard" class="btn-outline" (click)="goToDashboard()">Back to Dashboard</a>
+            </div>
+            
+            
+</div>
+
+
+
+<div class="container">
+
+
+
+    <!-- <div class="page login-page">
+        <div class="text-center">
+            <div class="bodylogin img-thumbnailpp">
+                <p *ngIf="!sendToDashboard">click
+                    to go to login page</p>
+                <p *ngIf="sendToDashboard">click
+                    to go to dashboard</p>
+
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- <div class="row">
+        <div class="col-md-7 col-md-">
+            <div class=" panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title" style="color:red">The page you requested for not found...!</div>
+                </div>
+                <div class="panel-body" id="bodylogin">
+                    <p *ngIf="!sendToDashboard">click  <a     (click)="goToLogin()">Here....</a> to go to login Page</p>
+                    <p *ngIf="sendToDashboard">click  <a    (click)="goToDashboard()">Here....</a> to go to Dashboard</p>
+                    
+                </div>
+               
+            </div>
+        </div>
+    </div>  -->
+</div>

@@ -1,0 +1,1248 @@
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left modal-primary">Alert</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&nbsp;&nbsp;&times;&nbsp;&nbsp;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{myMessage}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="staticModal.hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--delete model-->
+<div id="top" class="modal fade" bsModal #staticModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+  aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Delete Timecard alert..!</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal2.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{myMessage}}
+        <div class="pull-right">
+          <button type="button" class="btn btn-success btn-sm" (click)="staticModal2.hide()">No</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="OndeleteTimecard();staticModal2.hide()">Yes</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div style="padding:25px"></div>
+
+<div *ngIf="triggerk" class="alert alert-success alert-dismissable">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <i class="fa fa-comment fa-fw"></i>
+  <strong>{{myMessage}}</strong>
+</div>
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <!--bar chart added with help of chart.js-->
+      <i class="fa fa-clock-o fa-fw"></i>Time Cards
+
+    </div>
+
+    <!-- /.panel-heading -->
+    <!--slider start-->
+
+    <div class="panel-body">
+      <!--calender-->
+      <div class="row">
+        <div class="col-md-6 pull-left ">
+          <label for="timecards" id="timecards">Timecard Intervals (available):</label><br/>
+          <a style="padding:2px;" *ngIf="timecard1.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#one">1 AM - 2 AM</a>
+          <a style="padding:2px;" *ngIf="timecard2.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#two">2 AM - 3 AM</a>
+          <a style="padding:2px;" *ngIf="timecard3.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#three">3 AM - 4 AM</a>
+          <a style="padding:2px;" *ngIf="timecard4.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#four">4 AM - 5 AM</a>
+          <a style="padding:2px;" *ngIf="timecard5.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#five">5 AM - 6 AM</a>
+          <a style="padding:2px;" *ngIf="timecard6.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#six">6 AM - 7 AM</a>
+          <a style="padding:2px;" *ngIf="timecard7.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#seven">7 AM - 8 AM</a>
+          <a style="padding:2px;" *ngIf="timecard8.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#eight">8 AM - 9 AM</a>
+          <a style="padding:2px;" *ngIf="timecard9.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#nine">9 AM - 10 AM</a>
+          <a style="padding:2px;" *ngIf="timecard10.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#ten">10 AM - 11 AM</a>
+          <a style="padding:2px;" *ngIf="timecard11.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#eleven">11 AM - 12 PM</a>
+          <a style="padding:2px;" *ngIf="timecard12.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#twelve">12 PM - 1 PM</a>
+          <a style="padding:2px;" *ngIf="timecard13.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#thirteen">1 PM - 2 PM</a>
+          <a style="padding:2px;" *ngIf="timecard14.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#fourteen">2 PM - 3 PM</a>
+          <a style="padding:2px;" *ngIf="timecard15.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#fifteen">3 PM - 4 PM</a>
+          <a style="padding:2px;" *ngIf="timecard16.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#sixteen">4 PM - 5 PM</a>
+          <a style="padding:2px;" *ngIf="timecard17.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#seventeen">5 PM - 6 PM</a>
+          <a style="padding:2px;" *ngIf="timecard18.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#eightteen">6 PM - 7 PM</a>
+          <a style="padding:2px;" *ngIf="timecard19.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#nineteen">7 PM - 8 PM</a>
+          <a style="padding:2px;" *ngIf="timecard20.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#twenty">8 PM - 9 PM</a>
+          <a style="padding:2px;" *ngIf="timecard21.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#twentyOne">9 PM - 10 PM</a>
+          <a style="padding:2px;" *ngIf="timecard22.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#twentyTwo">10 PM - 11 PM</a>
+          <a style="padding:2px;" *ngIf="timecard23.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#twentyThree">11 PM - 12 AM</a>
+          <a style="padding:2px;" *ngIf="timecard24.length > 0" class="btn btn-primary btn-sm" scrollTo scrollTargetSelector="#twentyFour">12 AM - 1 AM </a>
+
+          <!--<label for="timecards">Timecard Intervals:</label>
+          <select class="form-control " onchange= scrollTo scrollTargetSelector = "location=this.value;" >
+            <option>-- Select Interval --</option>
+
+            <option *ngIf="timecard15.length > 0" value="#fifteen">3 PM - 4 PM</option>
+
+         </select>-->
+        </div>
+
+        <!--buton to srollup-->
+        <!--<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>-->
+        <button scrollTo scrollTargetSelector="#top" id="myBtn" title="Go to top">Go to top</button>
+
+
+        <div class="col-md-4 pull-right">
+          <form #myForm="ngForm" novalidate>
+            <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" (ngModelChange)="onSubmit(model)" required placeholder="{{model.date.day+'-'+model.date.month+'-'+model.date.year}}"></my-date-picker>
+
+          </form>
+        </div>
+
+      </div>
+      <div *ngIf="changeClass">
+        <div style="text-align:center">
+          Loading timecards...<i class="fa fa-circle-o-notch fa-spin"></i>
+        </div>
+      </div>
+      <!--1-->
+      <div id="one">
+        <div class="row" *ngIf="timecard1.length > 0">
+          <hr/>
+          <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+            <div *ngFor="let timecard of timecard1">
+              {{timecard.timestamp | date:'medium'}} 1 AM - 2 AM
+            </div>
+          </div>
+
+        </div>
+        <div class="row" *ngIf="timecard1.length > 0">
+          <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard1" style="padding-top:10px;text-align:center">
+
+            <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+
+              <!--repetation remover-->
+              <div *ngIf="k >= 1">
+
+              </div>
+              <div *ngIf="k == 0">
+
+                <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+                  <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                    (click)=setSelectedImage(image,k)>
+                  <p>{{image.timestamp | date:'shortTime'}}</p>
+                </div>
+                <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                  <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                    (click)=setSelectedImage(image,k)>
+                  <p>{{image.timestamp | date:'shortTime'}}</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--1 end-->
+
+        <!--2-->
+        <div id="two">
+          <div class="row" *ngIf="timecard2.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard2">
+                {{timecard.timestamp | date:'medium'}} 2 AM - 3 AM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard2.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard2" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                </div>
+                <!--repetaion remover-->
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--2 end-->
+        <!--3-->
+        <div id="three">
+          <div class="row" *ngIf="timecard3.length > 0">
+            <hr/>
+
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard3">
+                {{timecard.timestamp | date:'medium'}} 3 AM - 4 AM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard3.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard3" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                </div>
+                <!--repetaion remover-->
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--3 end-->
+        <!--4-->
+        <div id="four">
+          <div class="row" *ngIf="timecard4.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard4">
+                {{timecard.timestamp | date:'medium'}} 4 AM - 5 AM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard4.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard4" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--4 end-->
+        <!--5-->
+        <div id="five">
+          <div class="row" *ngIf="timecard5.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard5">
+                {{timecard.timestamp | date:'medium'}} 5 AM - 6 AM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard5.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard5" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--5 end-->
+        <!--6-->
+        <div id="six">
+          <div class="row" *ngIf="timecard6.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard6">
+                {{timecard.timestamp | date:'medium'}} 6 AM - 7 AM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard6.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard6" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--6 end-->
+        <!--7-->
+        <div id="seven">
+          <div class="row" *ngIf="timecard7.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard7">
+                {{timecard.timestamp | date:'medium'}} 7 AM - 8 AM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard7.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard7" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--7 end-->
+        <!--8-->
+        <div id="eight">
+          <div class="row" *ngIf="timecard8.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard8">
+                {{timecard.timestamp | date:'medium'}} 8 AM - 9 AM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard8.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard8" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--8 end-->
+        <!--9-->
+        <div id="nine">
+          <div class="row" *ngIf="timecard9.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard9">
+                {{timecard.timestamp | date:'medium'}} 9 AM - 10 AM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard9.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard9" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--9 end-->
+        <!--10-->
+        <div id="ten">
+          <div class="row" *ngIf="timecard10.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard10">
+                {{timecard.timestamp | date:'medium'}} 10 AM - 11 AM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard10.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard10" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--10 end-->
+        <!--11-->
+        <div id="eleven">
+          <div class="row" *ngIf="timecard11.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard11">
+                {{timecard.timestamp | date:'medium'}} 11 AM - 12 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard11.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard11" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--11 end-->
+        <!--12-->
+        <div id="twelve">
+          <div class="row" *ngIf="timecard12.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+
+              <div *ngFor="let timecard of timecard12">
+                {{timecard.timestamp | date:'medium'}} 12 PM - 1 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard12.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard12" style="padding-top:10px;text-align:center">
+
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--12 end-->
+        <!--13-->
+        <div id="thirteen">
+          <div>
+            <div class="row" *ngIf="timecard13.length > 0">
+              <hr/>
+              <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+                <div *ngFor="let timecard of timecard13">
+                  {{timecard.timestamp | date:'medium'}} 1 PM - 2 PM
+                </div>
+              </div>
+
+            </div>
+            <div class="row" *ngIf="timecard13.length > 0">
+              <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard13" style="padding-top:10px;text-align:center">
+                <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                  <!--repetation remover-->
+                  <div *ngIf="k >= 1">
+
+                  </div>
+                  <div *ngIf="k ==0">
+                    <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                      <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                        (click)=setSelectedImage(image,k)>
+                      <p>{{image.timestamp | date:'shortTime'}}</p>
+                    </div>
+                    <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                      <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                        (click)=setSelectedImage(image,k)>
+                      <p>{{image.timestamp | date:'shortTime'}}</p>
+                    </div>
+
+                  </div>
+                  <!--repetaion remover-->
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--13 end-->
+        <!--14-->
+        <div id="fourteen">
+          <div class="row" *ngIf="timecard14.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+
+              <div *ngFor="let timecard of timecard14">
+                {{timecard.timestamp | date:'medium'}} 2 PM - 3 PM
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard14.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard14" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--14 end-->
+        <!--15-->
+        <div id="fifteen">
+          <div class="row" *ngIf="timecard15.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard15">
+                {{timecard.timestamp | date:'medium'}} 3 PM - 4 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard15.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard15" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--15 end-->
+        <!--16-->
+        <div id="sixteen">
+          <div class="row" *ngIf="timecard16.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard16">
+                {{timecard.timestamp | date:'medium'}} 4 PM - 5 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard16.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard16" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--16 end-->
+        <!--17-->
+        <div id="seventeen">
+          <div class="row" *ngIf="timecard17.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard17">
+                {{timecard.timestamp | date:'medium'}} 5 PM - 6 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard17.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard17" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--17 end-->
+        <!--18-->
+        <div id="eighteen">
+          <div class="row" *ngIf="timecard18.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard18">
+                {{timecard.timestamp | date:'medium'}} 6 PM - 7 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard18.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard18" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--18 end-->
+        <!--19-->
+        <div id="nineteen">
+          <div class="row" *ngIf="timecard19.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard19">
+                {{timecard.timestamp | date:'medium'}} 7 PM - 8 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard19.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard19" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--19 end-->
+        <!--20-->
+        <div id="twenty">
+          <div class="row" *ngIf="timecard20.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard20">
+                {{timecard.timestamp | date:'medium'}} 8 PM - 9 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard20.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard20" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--20 end-->
+        <!--21-->
+        <div id="twentyOne">
+          <div class="row" *ngIf="timecard21.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard21">
+                {{timecard.timestamp | date:'medium'}} 9 PM - 10 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard21.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard21" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--21 end-->
+        <!--22-->
+        <div id="twentyTwo">
+          <div class="row" *ngIf="timecard22.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard22">
+                {{timecard.timestamp | date:'medium'}} 10 PM - 11 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard22.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard22" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--22 end-->
+        <!--23-->
+        <div id="twentyThree">
+          <div class="row" *ngIf="timecard23.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard23">
+                {{timecard.timestamp | date:'medium'}} 11 PM - 12 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard23.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard23" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--23 end-->
+        <!--24-->
+        <div id="twentyFour">
+          <div class="row" *ngIf="timecard24.length > 0">
+            <hr/>
+            <div class="col-md-12" style="font-size:30px; text-align:center;background-color:#337AB7;color:#ffffff">
+              <div *ngFor="let timecard of timecard24">
+                {{timecard.timestamp | date:'medium'}} 12 PM
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="timecard24.length > 0">
+            <div id="service" class=" col-md-2 col-sm-6" *ngFor="let image of timecard24" style="padding-top:10px;text-align:center">
+              <div *ngFor=" let ie of image.imageEvents;let k=index">
+
+                <!--repetation remover-->
+                <div *ngIf="k >= 1">
+
+                </div>
+                <div *ngIf="k ==0">
+                  <div *ngIf="ie.eventType !== screenShot" style="text-align:center;" class="img-thumbnail">
+
+                    <img src="http://afz-sol.com/images/inf.png" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+                  <div *ngIf="ie.eventType === screenShot" style="text-align:center" class="img-thumbnail">
+                    <img src="//{{ip}}:{{port}}/{{ie.thumbnailPath}}" align="middle" alt="Image Not Found" data-toggle="modal" data-target="#selectedImageModal"
+                      (click)=setSelectedImage(image,k)>
+                    <p>{{image.timestamp | date:'shortTime'}}</p>
+                  </div>
+
+                </div>
+                <!--repetaion remover-->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--24 end-->
+
+
+
+
+        <!--calender ends-->
+        <div class="row">
+
+          <!--model-->
+          <div class="modal fade" id="selectedImageModal">
+            <div class="modal-dialog" role="document">
+
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" *ngIf="selectedImage">Timecard Details <small> <br/>{{selectedImage.timestamp |date:'medium'}}</small></h4>
+                  <!--<h4 class="modal-title">{{selectedImage.timestamp | date:'medium'}}</h4>-->
+                  <!--<small *ngIf="selectedImage.timestamp">{{selectedImage.timestamp | date:'medium'}}</small>-->
+
+                </div>
+                <div class="modal-body">
+                  <div class="selectedImage" *ngIf="selectedImage">
+
+                    <div class="btn-back pull-left " (click)=navigate(false)>
+                      <button  class="btn btn-warning"><strong>&lt;</strong></button>
+                    </div>
+                    <div class="btn-forward pull-right" (click)=navigate(true)>
+
+                      <button class="btn btn-warning"><strong>&gt;</strong></button>
+                    </div>
+                    <ul class="nav nav-pills">
+                      <li><a data-toggle="tab" href="#web">Webcam</a></li>
+                      <li class="active"><a data-toggle="tab" href="#screen">Screenshot</a></li>
+                      <li class=""><a  data-toggle="tab" href="#activity">Activity events</a></li>
+
+                    </ul>
+
+                    <div class="tab-content" *ngIf="selectedImage.imageEvents">
+
+                      <div *ngFor="let o of selectedImage.imageEvents ">
+                        <div id="web" class="tab-pane fade in " *ngIf="selectedImage.imageEvents[imageIndex].eventType === webCam">
+                          <img width="100%" src="//{{ip}}:{{port}}/{{selectedImage.imageEvents[imageIndex].imagePath}}" alt="Image Not Found">
+                          <!--{{selectedImage.timestamp |date:'medium'}}-->
+                        </div>
+                        <div id="web" class="tab-pane fade in" *ngIf="selectedImage.imageEvents[imageIndex].eventType !== webCam" style="color: red; font-size: 25px ;text-align:center">
+                          <!--<p>Webcam Image Not Found...!!!</p>-->
+                          <img width="100%" src="http://afz-sol.com/images/inf.png" alt="Image Not Found">
+                        </div>
+                        <div id="screen" class="tab-pane fade in" *ngIf="selectedImage.imageEvents[imageIndex].eventType !== screenShot" style="color: red; font-size: 25px ;text-align:center">
+                          <!--<p>Screenshot Image Not Found....!!!</p>-->
+                          <img width="100%" src="http://afz-sol.com/images/inf.png" alt="Image Not Found">
+                        </div>
+                        <div id="screen" class="tab-pane fade in active" *ngIf="selectedImage.imageEvents[imageIndex].eventType === screenShot">
+                          <img width="100%" src="//{{ip}}:{{port}}/{{selectedImage.imageEvents[imageIndex].imagePath}}" alt="Image Not Found">
+                        </div>
+                      </div>
+
+                      <div id="activity" class="tab-pane fade in">
+
+
+                        <table class="table" style="text-align: center">
+                          <tr>
+                            <th>SR.#</th>
+                            <!--<th *ngIf="!d.timestamp">Time</th>-->
+                            <th>Time</th>
+                            <th>&nbsp;</th>
+                            <!--<th *ngIf="!d.processName">Active pocess</th>-->
+                            <th>Active pocess</th>
+                            <!--<th *ngIf="!d.mouseClicksCount">Mouse clicks</th>-->
+                            <th>Mouse count</th>
+                            <!--<th *ngIf="!d.mouseWheelCount">Mouse wheel</th>-->
+                            <!--<th>Mouse wheel</th>-->
+                            <!--<th *ngIf="!d.keyPressCount">Key press</th>-->
+                            <th>Key press</th>
+                          </tr>
+
+                          <tr *ngFor="let d of returnOnlyActivityEvent(selectedImage.activityEvents); let i=index">
+
+                            <td>{{i+1}}</td>
+                            <td *ngIf="!d.timestamp">Not Found</td>
+                            <td *ngIf="d.timestamp">{{d.timestamp | date:'mediumTime'}}</td>
+                            <tooltip-content #myTooltip [animation]="true" placement="left" style="overflow: scroll">
+                              <b><i><span style="color: #ffc520">{{d.activeWindowTitle}}</span></i></b>
+                            </tooltip-content>
+                            <td *ngIf="!d.processName">Not Found</td>
+                            <td *ngIf="d.processName" [tooltip]="myTooltip">{{ d.processName }}</td>
+                            <td *ngIf="!d.mouseClicksCount">0</td>
+                            <td *ngIf="d.mouseClicksCount">{{d.mouseClicksCount +d.mouseWheelCount}}</td>
+                            <!--<td *ngIf="!d.mouseWheelCount">0</td>
+                          <td *ngIf="d.mouseWheelCount">{{d.mouseWheelCount}}</td>-->
+                            <td *ngIf="!d.keyPressCount">0</td>
+                            <td *ngIf="d.keyPressCount > 0">{{d.keyPressCount}}</td>
+
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{calculateMouseClicks(selectedImage)}}</td>
+                            <td>{{calculateKeyPress(selectedImage)}}</td>
+                          </tr>
+
+
+                        </table>
+                      </div>
+
+
+                    </div>
+
+                    <!--<div style="padding:20px">
+                    <button (click)="deleteTimecard(selectedImage.id)" data-dismiss="modal" class="btn btn-danger">Delete Timecard</button>
+                  </div>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--model end  -->
+
+
+            <div class="row" style="color: red; font-size: 25px">
+              <div class="col-lg-12 col-lg-offset-2 col-sm-12" *ngIf="noTimeCard">
+                <!--<img src="src/app/images/img8.jpg" alt="NO Time Card Found">-->
+                <p>No timecard available for selected date....!!!</p>
+
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+      </div>
+
+
+      <!--slider end-->
+    </div>
+  </div>
